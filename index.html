@@ -3,153 +3,434 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050a14" />
   <title>New Tab</title>
-  <link rel="icon" href="https://www.google.com/s2/favicons?domain=worldmonitor.app&sz=64" />
+  <link rel="icon" type="image/png" sizes="32x32" href="brand/jarvis_logo.png" />
+  <link rel="preload" href="fonts/Oxanium-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/MavenPro-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("newtab_theme") || "blue";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
-<body class="theme-midnight">
-  <div class="bg live" id="bg" style="background-image: linear-gradient(120deg,#020617,#0c4a6e,#0f766e,#0e7490,#020617)"></div>
-  <video id="bgVideo" class="bg-video" autoplay muted loop playsinline></video>
+<body>
+  <div class="scene" id="scene">
+    <div class="wallpaper" id="wallpaper"></div>
+    <video id="bgVideo" class="bg-video" autoplay muted loop playsinline></video>
 
-  <div class="layout">
-    <nav class="dock" id="dock" aria-label="Shortcuts"></nav>
-
-    <main class="map-area" id="mapArea">
-      <iframe id="dash" class="dash" title="World Monitor"></iframe>
-
-      <div id="dashFallback" class="dash-fallback">
-        <div class="dash-fallback-card">
-          <h2>World Monitor</h2>
-          <p>Live dashboard could not be embedded here. Open it directly with your exact view.</p>
-          <a id="dashFallbackLink" href="#" target="_blank" rel="noopener">Open dashboard</a>
+    <div class="jarvis-bg" id="jarvisBg">
+      <div class="bg-glow-wrap" id="bgGlowWrap">
+        <div class="bg-glow-inner">
+          <img id="imgGlow" class="fade-img" alt="" src="images/glow-circle.svg" />
         </div>
       </div>
 
-      <div class="home-hero" id="homeHero">
-        <div class="home-clock" id="clock">00:00</div>
-        <div class="home-date" id="date"></div>
-        <div class="home-greet" id="greet">Hello</div>
-      </div>
-    </main>
+      <div class="bg-border bg-border-blur40" id="bgBorder1"></div>
+      <div class="bg-border bg-border-blur10" id="bgBorder2"></div>
+      <div class="bg-border bg-border-sharp" id="bgBorder3"></div>
 
-    <aside class="panel" id="panel">
-      <div class="panel-top">
-        <div class="mini-clock" id="miniClock">00:00</div>
-        <div class="mini-date" id="miniDate"></div>
-        <div class="mini-greet" id="miniGreet">Hello</div>
+      <div class="bg-ambient-below" id="bgAmbientBelow">
+        <div class="amb amb-1"><img id="imgAmb1" class="fade-img" alt="" src="images/ambient-below-1.svg" /></div>
+        <div class="amb amb-2"><img id="imgAmb2" class="fade-img" alt="" src="images/ambient-below-2.svg" /></div>
+        <div class="amb amb-3"><img id="imgAmb3" class="fade-img" alt="" src="images/ambient-below-3.svg" /></div>
       </div>
 
-      <form class="search" id="searchForm">
-        <input id="searchInput" type="text" placeholder="Search the web..." autocomplete="off" />
-        <button type="submit">Go</button>
-      </form>
-
-      <div class="panel-actions">
-        <button class="chip active" id="modeDash" type="button">Map</button>
-        <button class="chip" id="modeHome" type="button">Home</button>
-        <button class="chip" id="addBtn" type="button">+ Add</button>
-        <button class="chip" id="settingsBtn" type="button">Themes</button>
-        <button class="chip" id="fullscreenBtn" type="button">Full</button>
+      <div class="bg-mask">
+        <img alt="" src="images/mask-grid-circle.svg" />
       </div>
 
-      <div class="panel-card">
-        <h3>Dock</h3>
-        <p>All your shortcuts live in the dock on the left, like macOS. Hover an icon for the name. Use + Add to put more sites there.</p>
-      </div>
+      <div class="bg-edge bg-edge-left"></div>
+      <div class="bg-edge bg-edge-right"></div>
+      <div class="bg-edge bg-edge-bottom"></div>
+    </div>
 
-      <div class="panel-card">
-        <h3>Dashboard</h3>
-        <p class="dash-link" id="dashLink">Open exact World Monitor view in a new tab</p>
+    <div class="rays" id="rays">
+      <div class="rays-multi" id="raysMulti">
+        <div class="ray-slot ray-slot-1">
+          <div class="ray-rot" style="transform: rotate(10.85deg)">
+            <div class="ray-box"><div class="ray-bleed"><img class="fade-img" alt="" src="images/vector-2868.svg" /></div></div>
+          </div>
+        </div>
+        <div class="ray-slot ray-slot-2">
+          <div class="ray-rot" style="transform: rotate(12.13deg)">
+            <div class="ray-box"><div class="ray-bleed"><img class="fade-img" alt="" src="images/vector-2869.svg" /></div></div>
+          </div>
+        </div>
+        <div class="ray-slot ray-slot-3">
+          <div class="ray-rot" style="transform: rotate(11.24deg)">
+            <div class="ray-box"><div class="ray-bleed"><img class="fade-img" alt="" src="images/vector-2870.svg" /></div></div>
+          </div>
+        </div>
+        <div class="ray-slot ray-ellipse">
+          <div class="ray-rot" style="transform: rotate(39.96deg)">
+            <div class="ray-box ray-box-e"><div class="ray-bleed ray-bleed-e"><img class="fade-img" alt="" src="images/rays-ellipse.svg" /></div></div>
+          </div>
+        </div>
       </div>
+      <div class="rays-single" id="raysSingle" hidden>
+        <img id="imgRaysSingle" class="fade-img" alt="" src="images/rays-purple.svg" />
+      </div>
+    </div>
 
-      <div class="panel-foot">
-        <span>press / to search</span>
-        <button class="chip" id="hideUiBtn" type="button">Hide UI</button>
+    <div class="particles-layer">
+      <div class="particles-inner">
+        <img alt="" src="images/particles.svg" />
       </div>
-    </aside>
+    </div>
+
+    <div class="box-glow box-glow-top1"><img alt="" src="images/box-glow-top1.svg" /></div>
+    <div class="box-glow box-glow-top2"><img alt="" src="images/box-glow-top2.svg" /></div>
+    <div class="box-glow box-glow-top3"><img alt="" src="images/box-glow-top3.svg" /></div>
+    <div class="box-glow box-glow-particles"><img alt="" src="images/box-particles.svg" /></div>
+    <div class="box-glow box-glow-bottom1"><div class="bleed"><img alt="" src="images/box-glow-bottom1.svg" /></div></div>
+    <div class="box-glow box-glow-bottom2"><div class="bleed"><img alt="" src="images/box-glow-bottom2.svg" /></div></div>
+    <div class="box-glow box-glow-bottom3"><div class="bleed"><img alt="" src="images/box-glow-bottom3.svg" /></div></div>
   </div>
 
-  <button class="show-ui" id="showUiBtn" type="button">Show UI</button>
+  <div class="app">
+    <header class="shell-header">
+      <a class="shell-logo" id="brandHome" href="#" aria-label="Home">
+        <img alt="JARVIS logo" src="images/logo.png" />
+      </a>
+      <h1 class="shell-title" id="shellTitle">
+        <span class="shell-title-fill">New Tab</span>
+        <span class="shell-title-shine" aria-hidden="true">New Tab</span>
+      </h1>
+      <button class="super-menu-btn" id="superMenuBtn" type="button">
+        <span class="smb-shine" aria-hidden="true"></span>
+        <span class="smb-border" aria-hidden="true"></span>
+        <svg class="smb-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" x2="20" y1="12" y2="12" />
+          <line x1="4" x2="20" y1="6" y2="6" />
+          <line x1="4" x2="20" y1="18" y2="18" />
+        </svg>
+        <span>Super Menu</span>
+      </button>
+    </header>
 
-  <div class="modal-back" id="settingsModal">
-    <div class="modal">
-      <div class="modal-head">
-        <h3>Themes & settings</h3>
-        <button class="icon-btn" data-close type="button">×</button>
+    <main class="stage">
+      <h1 class="hero-text" id="greeting">
+        <span class="hero-base">
+          <span class="hero-line" id="greetLine">Good evening.</span>
+          <span class="hero-line" id="greetSub">How can i assist you today ?</span>
+        </span>
+        <span class="hero-shine" aria-hidden="true">
+          <span class="hero-line" id="greetLine2">Good evening.</span>
+          <span class="hero-line" id="greetSub2">How can i assist you today ?</span>
+        </span>
+      </h1>
+
+      <div class="answer-card" id="answerCard" hidden>
+        <div class="answer-borders" aria-hidden="true">
+          <div class="ab ab-top"></div>
+          <div class="ab ab-bottom"></div>
+          <div class="ab ab-fill"></div>
+          <div class="ab ab-shine-top"></div>
+          <div class="ab ab-shine-bottom"></div>
+        </div>
+        <div class="answer-inner">
+          <div class="answer-head">
+            <span class="thinking-pill">
+              <span class="tp-border" aria-hidden="true"></span>
+              <span class="tp-body">
+                <span class="thinking-label">Thinking</span>
+                <span class="thinking-dots" aria-hidden="true">
+                  <i></i><i></i><i></i>
+                </span>
+              </span>
+            </span>
+            <span class="thinking-note" id="thinkingNote"></span>
+          </div>
+          <p class="answer-body" id="answerBody"></p>
+        </div>
       </div>
 
-      <div class="field">
-        <span>Theme</span>
-        <div class="theme-row" id="themeRow"></div>
+      <div class="search-orb" id="searchOrb">
+        <div class="orb-stage" id="orbStage">
+          <svg class="sphere-svg" id="sphereSvg" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1a5aff" />
+                <stop offset="25%" stop-color="#0066ff" />
+                <stop offset="50%" stop-color="#4a8aff" />
+                <stop offset="75%" stop-color="#0055dd" />
+                <stop offset="100%" stop-color="#1a5aff" />
+              </linearGradient>
+              <linearGradient id="strokeGradient2" x1="100%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#0044cc" />
+                <stop offset="50%" stop-color="#2277ff" />
+                <stop offset="100%" stop-color="#0044cc" />
+              </linearGradient>
+              <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#0a0a18" />
+                <stop offset="70%" stop-color="#03030a" />
+                <stop offset="100%" stop-color="#000" />
+              </radialGradient>
+              <linearGradient id="pathFillGradient" x1="5%" y1="0%" x2="95%" y2="100%">
+                <stop offset="0%" stop-color="#0a1530" />
+                <stop offset="50%" stop-color="#081028" />
+                <stop offset="100%" stop-color="#050a18" />
+              </linearGradient>
+              <filter id="lineGlow" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation="1.2" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <circle cx="220" cy="220" r="210" fill="url(#coreGradient)" />
+            <g class="sphere-main" stroke="url(#strokeGradient)" stroke-width="2.5" fill="url(#pathFillGradient)" filter="url(#lineGlow)" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M361.604 361.238c-24.407 24.408-51.119 37.27-59.662 28.727-8.542-8.543 4.319-35.255 28.726-59.663 24.408-24.407 51.12-37.269 59.663-28.726 8.542 8.543-4.319 35.255-28.727 59.662z" />
+              <path d="M360.72 360.354c-35.879 35.88-75.254 54.677-87.946 41.985-12.692-12.692 6.105-52.067 41.985-87.947 35.879-35.879 75.254-54.676 87.946-41.984 12.692 12.692-6.105 52.067-41.984 87.946z" />
+              <path d="M357.185 356.819c-44.91 44.91-94.376 68.258-110.485 52.149-16.11-16.11 7.238-65.575 52.149-110.485 44.91-44.91 94.376-68.259 110.485-52.15 16.11 16.11-7.239 65.576-52.149 110.486z" />
+              <path d="M350.998 350.632c-53.21 53.209-111.579 81.107-130.373 62.313-18.794-18.793 9.105-77.163 62.314-130.372 53.209-53.21 111.579-81.108 130.373-62.314 18.794 18.794-9.105 77.164-62.314 130.373z" />
+              <path d="M343.043 342.677c-59.8 59.799-125.292 91.26-146.283 70.268-20.99-20.99 10.47-86.483 70.269-146.282 59.799-59.8 125.292-91.26 146.283-70.269 20.99 20.99-10.47 86.484-70.27 146.283z" />
+              <path d="M334.646 334.28c-65.169 65.169-136.697 99.3-159.762 76.235-23.065-23.066 11.066-94.593 76.235-159.762s136.697-99.3 159.762-76.235c23.065 23.065-11.066 94.593-76.235 159.762z" />
+              <path d="M324.923 324.557c-69.806 69.806-146.38 106.411-171.031 81.76-24.652-24.652 11.953-101.226 81.759-171.032 69.806-69.806 146.38-106.411 171.031-81.76 24.652 24.653-11.953 101.226-81.759 171.032z" />
+              <path d="M312.99 312.625c-73.222 73.223-153.555 111.609-179.428 85.736-25.872-25.872 12.514-106.205 85.737-179.428s153.556-111.609 179.429-85.737c25.872 25.873-12.514 106.205-85.737 179.429z" />
+              <path d="M300.175 299.808c-75.909 75.909-159.11 115.778-185.837 89.052-26.726-26.727 13.143-109.929 89.051-185.837 75.908-75.908 159.11-115.778 185.837-89.051 26.726 26.726-13.143 109.928-89.051 185.836z" />
+              <path d="M284.707 284.34c-77.617 77.617-162.303 118.773-189.152 91.924-26.848-26.848 14.308-111.534 91.924-189.15C265.096 109.496 349.782 68.34 376.63 95.188c26.849 26.849-14.307 111.535-91.923 189.151z" />
+              <path d="M269.239 267.989c-78.105 78.104-163.187 119.656-190.035 92.807-26.849-26.848 14.703-111.93 92.807-190.035 78.105-78.104 163.187-119.656 190.035-92.807 26.849 26.848-14.703 111.93-92.807 190.035z" />
+              <path d="M252.887 252.52C175.27 330.138 90.584 371.294 63.736 344.446 36.887 317.596 78.043 232.91 155.66 155.293 233.276 77.677 317.962 36.521 344.81 63.37c26.85 26.848-14.307 111.534-91.923 189.15z" />
+              <path d="M236.977 236.61C161.069 312.52 77.867 352.389 51.14 325.663c-26.726-26.727 13.143-109.928 89.052-185.837 75.908-75.908 159.11-115.777 185.836-89.05 26.727 26.726-13.143 109.928-89.051 185.836z" />
+              <path d="M221.067 220.7C147.844 293.925 67.51 332.31 41.639 306.439c-25.873-25.873 12.513-106.206 85.736-179.429C200.6 53.786 280.931 15.4 306.804 41.272c25.872 25.873-12.514 106.206-85.737 179.429z" />
+              <path d="M205.157 204.79c-69.806 69.807-146.38 106.412-171.031 81.76-24.652-24.652 11.953-101.225 81.759-171.031 69.806-69.807 146.38-106.411 171.031-81.76 24.652 24.652-11.953 101.226-81.759 171.032z" />
+              <path d="M189.247 188.881c-65.169 65.169-136.696 99.3-159.762 76.235-23.065-23.065 11.066-94.593 76.235-159.762s136.697-99.3 159.762-76.235c23.065 23.065-11.066 94.593-76.235 159.762z" />
+              <path d="M173.337 172.971c-59.799 59.8-125.292 91.26-146.282 70.269-20.991-20.99 10.47-86.484 70.268-146.283 59.8-59.799 125.292-91.26 146.283-70.269 20.99 20.991-10.47 86.484-70.269 146.283z" />
+              <path d="M157.427 157.061c-53.209 53.21-111.578 81.108-130.372 62.314-18.794-18.794 9.104-77.164 62.313-130.373 53.21-53.209 111.58-81.108 130.373-62.314 18.794 18.794-9.105 77.164-62.314 130.373z" />
+              <path d="M141.517 141.151c-44.91 44.91-94.376 68.259-110.485 52.15-16.11-16.11 7.239-65.576 52.15-110.486 44.91-44.91 94.375-68.258 110.485-52.15 16.109 16.11-7.24 65.576-52.15 110.486z" />
+              <path d="M125.608 125.241c-35.88 35.88-75.255 54.677-87.947 41.985-12.692-12.692 6.105-52.067 41.985-87.947C115.525 43.4 154.9 24.603 167.592 37.295c12.692 12.692-6.105 52.067-41.984 87.946z" />
+              <path d="M109.698 109.332c-24.408 24.407-51.12 37.268-59.663 28.726-8.542-8.543 4.319-35.255 28.727-59.662 24.407-24.408 51.12-37.27 59.662-28.727 8.543 8.543-4.319 35.255-28.726 59.663z" />
+            </g>
+            <g class="sphere-secondary" stroke="url(#strokeGradient2)" stroke-width="2" fill="none" filter="url(#lineGlow)" stroke-linecap="round" stroke-linejoin="round" opacity="0.5">
+              <path d="M361.604 361.238c-24.407 24.408-51.119 37.27-59.662 28.727" />
+              <path d="M357.185 356.819c-44.91 44.91-94.376 68.258-110.485 52.149" />
+              <path d="M350.998 350.632c-53.21 53.209-111.579 81.107-130.373 62.313" />
+              <path d="M343.043 342.677c-59.8 59.799-125.292 91.26-146.283 70.268" />
+              <path d="M300.175 299.808c-75.909 75.909-159.11 115.778-185.837 89.052" />
+              <path d="M252.887 252.52C175.27 330.138 90.584 371.294 63.736 344.446" />
+              <path d="M236.977 236.61C161.069 312.52 77.867 352.389 51.14 325.663" />
+              <path d="M221.067 220.7C147.844 293.925 67.51 332.31 41.639 306.439" />
+              <path d="M125.608 125.241c-35.88 35.88-75.255 54.677-87.947 41.985" />
+              <path d="M109.698 109.332c-24.408 24.407-51.12 37.268-59.663 28.726" />
+            </g>
+          </svg>
+        </div>
+
+        <div class="glass-input" id="searchFormWrap">
+          <div class="glass-layers" aria-hidden="true">
+            <div class="gl-blur"></div>
+            <div class="gl-grad"></div>
+            <div class="gl-inset"></div>
+            <div class="gl-border"></div>
+          </div>
+          <form class="glass-form" id="searchForm" autocomplete="off">
+            <input id="searchInput" type="text" placeholder="Ask anything…" aria-label="Search" />
+            <div class="search-tools">
+              <button class="tool-btn" id="micBtn" type="button" title="Voice search" aria-label="Voice search">
+                <img alt="" src="images/microphone.png" width="16" height="16" />
+              </button>
+              <button class="tool-btn send" id="sendBtn" type="submit" title="Search" aria-label="Search">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
 
-      <label class="field">
-        <span>Accent color</span>
-        <input type="color" id="accentInput" value="#3b82f6" />
-      </label>
+      <section class="shortcuts" aria-label="Shortcuts">
+        <div class="shortcuts-head">
+          <span>Shortcuts</span>
+          <button class="chip-btn" id="addShortcutBtn" type="button">+ Add</button>
+        </div>
+        <div class="shortcut-grid" id="shortcutGrid"></div>
+      </section>
 
-      <label class="field">
-        <span>Background image url</span>
-        <input type="text" id="bgInput" placeholder="https://..." />
-      </label>
-
-      <div class="field">
-        <span>Wallpapers</span>
-        <div class="wallpapers" id="wallpapers"></div>
+      <div class="quick-actions">
+        <button class="chip-btn" id="modeDash" type="button">Show Map</button>
+        <a class="chip-btn" id="dashLink" href="#" target="_blank" rel="noopener">World Monitor</a>
+        <button class="chip-btn" id="themesBtn" type="button">Themes</button>
+        <button class="chip-btn" id="fullscreenBtn" type="button">Full</button>
+        <button class="chip-btn" id="hideUiBtn" type="button">Hide UI</button>
       </div>
+    </main>
+  </div>
 
-      <label class="field">
-        <span>Dashboard url</span>
-        <input type="text" id="dashUrlInput" />
-      </label>
-
-      <label class="field">
-        <span>Search engine</span>
-        <select id="engineInput">
-          <option value="https://www.google.com/search?q=">Google</option>
-          <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
-          <option value="https://www.bing.com/search?q=">Bing</option>
-          <option value="https://www.youtube.com/results?search_query=">YouTube</option>
-          <option value="https://chatgpt.com/?q=">ChatGPT</option>
-        </select>
-      </label>
-
-      <label class="check">
-        <input type="checkbox" id="showDashInput" checked />
-        <span>Show map on start</span>
-      </label>
-
-      <div class="modal-actions">
-        <button class="ghost" id="resetBtn" type="button">Reset all</button>
-        <button class="primary" data-close type="button">Done</button>
+  <div class="map-layer" id="mapLayer" hidden>
+    <div class="map-bar techy-topmenu">
+      <button class="chip-btn" id="closeMapBtn" type="button">Back</button>
+      <span>World Monitor — exact view</span>
+      <a class="chip-btn" id="mapOpenLink" href="#" target="_blank" rel="noopener">Open</a>
+    </div>
+    <iframe id="dash" class="dash" title="World Monitor"></iframe>
+    <div id="dashFallback" class="dash-fallback">
+      <div class="dash-fallback-card techy-dialog">
+        <h2>World Monitor</h2>
+        <p>Live dashboard could not be embedded here. Open it directly with your exact view.</p>
+        <a id="dashFallbackLink" href="#" target="_blank" rel="noopener">Open dashboard</a>
       </div>
     </div>
   </div>
 
-  <div class="modal-back" id="addModal">
-    <div class="modal">
-      <div class="modal-head">
-        <h3>Add to dock</h3>
+  <button class="show-ui" id="showUiBtn" type="button">Show UI</button>
+
+  <div class="theme-dots" id="themeDots" aria-label="Theme switcher"></div>
+
+  <div class="menu-back" id="superMenu" hidden>
+    <div class="menu-panel techy-dialog" role="dialog" aria-label="Super Menu">
+      <div class="menu-head techy-header">
+        <h3>Super Menu</h3>
         <button class="icon-btn" data-close type="button">×</button>
       </div>
 
-      <label class="field">
-        <span>Name</span>
-        <input type="text" id="nameInput" placeholder="ChatGPT" />
-      </label>
+      <div class="menu-tabs" id="menuTabs">
+        <button class="menu-tab active" data-tab="home" type="button">Home</button>
+        <button class="menu-tab" data-tab="themes" type="button">Themes</button>
+        <button class="menu-tab" data-tab="wall" type="button">Wallpaper</button>
+        <button class="menu-tab" data-tab="tools" type="button">Tools</button>
+        <button class="menu-tab" data-tab="settings" type="button">Settings</button>
+      </div>
 
-      <label class="field">
-        <span>Url</span>
-        <input type="text" id="urlInput" placeholder="https://chatgpt.com" />
-      </label>
+      <div class="menu-body">
+        <section class="menu-section active" data-section="home">
+          <div class="stats-row">
+            <div class="stat-card techy-panel">
+              <h4>Clock</h4>
+              <div class="stat-big" id="statClock">00:00</div>
+              <div class="stat-sub" id="statDate"></div>
+            </div>
+            <div class="stat-card techy-panel">
+              <h4>Weather</h4>
+              <div class="stat-big" id="weatherTemp">--°</div>
+              <div class="stat-sub" id="weatherMeta">Locating…</div>
+            </div>
+          </div>
 
-      <label class="field">
-        <span>Icon url (optional)</span>
-        <input type="text" id="iconInput" placeholder="leave empty for favicon" />
-      </label>
+          <div class="panel-card techy-panel">
+            <h4>Todos</h4>
+            <form class="todo-form" id="todoForm">
+              <input id="todoInput" type="text" placeholder="Add a task…" autocomplete="off" />
+              <button type="submit">Add</button>
+            </form>
+            <ul class="todo-list" id="todoList"></ul>
+          </div>
 
-      <div class="modal-actions">
-        <button class="primary" id="saveShortcut" type="button">Save</button>
+          <div class="panel-card techy-panel">
+            <h4>Focus</h4>
+            <div class="focus-row">
+              <div class="focus-time" id="focusTime">25:00</div>
+              <div class="focus-actions">
+                <button class="chip-btn" id="focusStart" type="button">Start</button>
+                <button class="chip-btn" id="focusReset" type="button">Reset</button>
+                <button class="chip-btn" id="focusBreak" type="button">Break</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-card techy-panel">
+            <h4>Notes</h4>
+            <textarea id="notesInput" class="notes" placeholder="Scratch pad…"></textarea>
+          </div>
+        </section>
+
+        <section class="menu-section" data-section="themes">
+          <div class="theme-grid" id="themeGrid"></div>
+          <label class="field">
+            <span>Accent color</span>
+            <input type="color" id="accentInput" value="#553DFF" />
+          </label>
+        </section>
+
+        <section class="menu-section" data-section="wall">
+          <div class="wall-grid" id="wallGrid"></div>
+          <label class="check">
+            <input type="checkbox" id="removeBgInput" />
+            <span>Remove background wallpaper</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" id="bgEffectsInput" checked />
+            <span>Show JARVIS background effects</span>
+          </label>
+          <label class="field">
+            <span>Background image url</span>
+            <input type="text" id="bgInput" placeholder="https://..." />
+          </label>
+        </section>
+
+        <section class="menu-section" data-section="tools">
+          <div class="panel-card techy-panel">
+            <h4>Dock shortcuts</h4>
+            <p class="muted">Click a shortcut below to remove it. Use + Add above the grid for new ones.</p>
+            <div class="manage-list" id="manageList"></div>
+          </div>
+          <div class="panel-card techy-panel">
+            <h4>Map</h4>
+            <p class="muted">Map stays off unless you open it. The new tab UI is the main view.</p>
+            <button class="chip-btn" id="openMapMenuBtn" type="button">Show Map</button>
+          </div>
+          <div class="panel-card techy-panel">
+            <h4>Dashboard</h4>
+            <a class="dash-link" id="dashLink2" href="#" target="_blank" rel="noopener">Open exact World Monitor view</a>
+          </div>
+        </section>
+
+        <section class="menu-section" data-section="settings">
+          <label class="field">
+            <span>Dashboard url</span>
+            <input type="text" id="dashUrlInput" />
+          </label>
+          <label class="field">
+            <span>Search engine</span>
+            <select id="engineInput">
+              <option value="https://www.google.com/search?q=">Google</option>
+              <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+              <option value="https://www.bing.com/search?q=">Bing</option>
+              <option value="https://www.youtube.com/results?search_query=">YouTube</option>
+              <option value="https://chatgpt.com/?q=">ChatGPT</option>
+            </select>
+          </label>
+          <label class="check">
+            <input type="checkbox" id="showDashInput" />
+            <span>Open map when new tab starts</span>
+          </label>
+          <div class="modal-actions">
+            <button class="ghost" id="resetBtn" type="button">Reset all</button>
+            <button class="primary" data-close type="button">Done</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-back" id="addModal" hidden>
+    <div class="menu-panel techy-dialog" role="dialog" aria-label="Add shortcut">
+      <div class="menu-head techy-header">
+        <h3>Add shortcut</h3>
+        <button class="icon-btn" data-close type="button">×</button>
+      </div>
+      <div class="menu-body">
+        <label class="field">
+          <span>Name</span>
+          <input type="text" id="nameInput" placeholder="ChatGPT" />
+        </label>
+        <label class="field">
+          <span>Url</span>
+          <input type="text" id="urlInput" placeholder="https://chatgpt.com" />
+        </label>
+        <label class="field">
+          <span>Icon url (optional)</span>
+          <input type="text" id="iconInput" placeholder="leave empty for favicon" />
+        </label>
+        <div class="modal-actions">
+          <button class="primary" id="saveShortcut" type="button">Save</button>
+        </div>
       </div>
     </div>
   </div>

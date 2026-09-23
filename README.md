@@ -1,6 +1,6 @@
 # Custom New Tab
 
-A simple new tab page with the World Monitor dashboard, search, and shortcuts for AI tools and daily sites.
+JARVIS-styled new tab with the World Monitor dashboard, sphere search, shortcuts, and live wallpaper.
 
 **Live:** https://anonymouscoderartist.github.io/custom-new-tab/
 
@@ -10,18 +10,16 @@ Default dashboard link:
 
 ## Features
 
-- Split view: map on the left, search and controls on the right
-- Vertical macOS-style dock for all shortcuts
-- Rounded glassmorphism UI with local Geist font
-- macOS-style dock magnify animation
-- Live animated wallpapers (gradients + real anime videos)
-- Multiple themes (no purple): Midnight, Ocean, Sunset, Forest, Ember, Crimson, Ice, Graphite, Lime
-- Live clock, date, and greeting
-- World Monitor dashboard with your exact view
-- Shortcuts for AI Studio, ChatGPT, Gemini, DeepSeek, Qwen, Claude, YouTube, Google, Instagram, GitHub, and more
-- Custom accent, search engine, and dashboard URL
-- Add or remove dock icons
-- Hide UI for a clean map view
+- Same JARVIS assets and styling: rays, glow, mask grid, particles, box glows, logo
+- Local Oxanium + Maven Pro fonts (preloaded)
+- Greeting hero text + TechSphere search + glass ask bar
+- Super Menu: clock, weather, todos, focus, notes, themes, wallpaper, tools, settings
+- Default background: live anime video wallpaper
+- Options to remove wallpaper and toggle JARVIS background effects
+- Map is optional only (Show Map) — new tab UI is the main view
+- Themes: blue, purple, mixed, minimal (dots bottom-right)
+- Shortcuts grid with add/remove
+- Exact World Monitor dashboard URL
 
 ## Run locally
 
@@ -35,8 +33,6 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Live on GitHub Pages: https://anonymouscoderartist.github.io/custom-new-tab/
 
-If GitHub Pages cannot load the dashboard in the browser, use Vercel instead. The `api/frame.js` helper is already included for that.
-
 ## Customize
 
-Click **Themes** on the right panel to switch theme, wallpaper, accent color, search engine, and dashboard URL.
+Open **Super Menu** for wallpaper, themes, shortcuts, search engine, and dashboard URL.
