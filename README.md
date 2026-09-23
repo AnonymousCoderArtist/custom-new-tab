@@ -32,7 +32,7 @@ Then open http://localhost:3000
 
 Didn't build everything from scratch — big thanks to:
 
-- **[JARVIS](https://github.com/) WebUI** — the whole look and feel. Assets in `images/` and `brand/`, glass styling, search bar geometry, hero text, and the background effects all come from here.
+- **[JARVIS](https://github.com/AgentJarvis1/JARVIS)** — the whole look and feel. Assets in `images/` and `brand/`, glass styling, search bar geometry, hero text, and the background effects all come from here.
 - **[World Monitor](https://www.worldmonitor.app)** — the geopolitical dashboard. This project just opens your exact view of it.
 - **[Pixabay](https://pixabay.com)** — the live anime video wallpapers.
 - **[Unsplash](https://unsplash.com)** — the photo wallpapers (earth, space, city).
