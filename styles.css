@@ -299,8 +299,18 @@
 }
 
 @keyframes titleShimmer {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+  0% { background-position: 150% 50%; }
+  100% { background-position: -50% 50%; }
+}
+
+@keyframes smbSheen {
+  0%, 100% { opacity: 0.15; transform: translateX(-8%); }
+  50% { opacity: 0.4; transform: translateX(8%); }
+}
+
+@keyframes dockPop {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.4); }
 }
 
 * {
@@ -804,6 +814,8 @@ a {
   line-height: 1.25;
   letter-spacing: 0;
   white-space: nowrap;
+  display: inline-block;
+  isolation: isolate;
 }
 
 .shell-title-fill {
@@ -816,11 +828,19 @@ a {
 .shell-title-shine {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, #E8D5F2 0%, var(--accent-bright, #4F46FD) 100%);
+  background: linear-gradient(110deg,
+    transparent 0%,
+    transparent 35%,
+    var(--shimmer-color, #6983FF) 50%,
+    transparent 65%,
+    transparent 100%);
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  mix-blend-mode: multiply;
+  mix-blend-mode: screen;
+  animation: titleShimmer 3.2s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .super-menu-btn {
@@ -855,6 +875,7 @@ a {
   background: radial-gradient(ellipse at 50% 62.5%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 1) 100%);
   opacity: 0.2;
   pointer-events: none;
+  animation: smbSheen 2.8s ease-in-out infinite;
 }
 
 .smb-border {
@@ -1108,18 +1129,17 @@ a {
   left: 50%;
   bottom: clamp(3%, 5vh, 8%);
   transform: translateX(-50%);
-  width: clamp(320px, 45vw, 567px);
+  width: max-content;
   max-width: calc(100vw - 48px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
   z-index: 12;
 }
 
 .glass-input {
   position: relative;
-  width: 100%;
+  width: clamp(320px, 45vw, 567px);
   max-width: 100%;
   border-radius: 29px;
   overflow: hidden;
@@ -1237,17 +1257,29 @@ a {
   align-items: center;
   gap: 8px;
   max-height: min(78vh, 820px);
-  overflow-y: auto;
+  overflow: visible;
   overscroll-behavior: contain;
-  padding: 10px 8px;
+  padding: 14px 12px;
   pointer-events: auto;
 }
 
-.dock::-webkit-scrollbar {
+.dock-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-height: min(72vh, 760px);
+  overflow-y: auto;
+  overflow-x: visible;
+  overscroll-behavior: contain;
+  padding: 4px;
+}
+
+.dock-scroll::-webkit-scrollbar {
   width: 4px;
 }
 
-.dock::-webkit-scrollbar-thumb {
+.dock-scroll::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.18);
   border-radius: 4px;
 }
@@ -1261,6 +1293,8 @@ a {
   font-size: 20px;
   flex-shrink: 0;
   border-radius: 12px;
+  position: relative;
+  z-index: 6;
 }
 
 .shortcut-grid {
@@ -1268,6 +1302,7 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  overflow: visible;
 }
 
 .shortcut {
@@ -1288,9 +1323,11 @@ a {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.18), inset -1px -1px 1px 0 rgba(255, 255, 255, 0.08);
-  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
-  overflow: hidden;
+  transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.25, 1.2), border-color 0.15s ease, background 0.15s ease, box-shadow 0.2s ease;
+  overflow: visible;
   flex-shrink: 0;
+  z-index: 1;
+  transform-origin: center center;
 }
 
 .shortcut::before {
@@ -1300,14 +1337,28 @@ a {
   border-radius: 14px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
   pointer-events: none;
+  z-index: 0;
 }
 
 .shortcut:hover {
-  transform: scale(1.08);
+  transform: scale(1.35);
   border-color: rgba(255, 255, 255, 0.35);
   background: rgba(255, 255, 255, 0.06);
   color: transparent;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 1px 1px 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4), inset 1px 1px 1px 0 rgba(255, 255, 255, 0.25);
+  z-index: 5;
+}
+
+.shortcut:hover + .shortcut,
+.shortcut:has(+ .shortcut:hover) {
+  transform: scale(1.18);
+  z-index: 4;
+}
+
+.shortcut:hover + .shortcut + .shortcut,
+.shortcut:has(+ .shortcut + .shortcut:hover) {
+  transform: scale(1.08);
+  z-index: 3;
 }
 
 .shortcut img,
@@ -1324,6 +1375,7 @@ a {
   font-weight: 700;
   font-size: 13px;
   color: rgb(var(--text-bright-r), var(--text-bright-g), var(--text-bright-b));
+  pointer-events: none;
 }
 
 .shortcut span.name {
@@ -1332,12 +1384,12 @@ a {
 
 .shortcut .del {
   position: absolute;
-  top: 6px;
-  right: 6px;
+  top: 2px;
+  right: 2px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   background: #ef4444;
   color: #fff;
   font-size: 11px;
@@ -1347,11 +1399,21 @@ a {
   pointer-events: none;
   display: grid;
   place-items: center;
+  z-index: 10;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
-.shortcut:hover .del {
+.shortcut:hover .del,
+.shortcut:focus-within .del {
   opacity: 1;
   pointer-events: auto;
+}
+
+.shortcut .del:hover {
+  transform: scale(1.15);
+  background: #dc2626;
 }
 
 .chip-btn,
@@ -1417,7 +1479,7 @@ a {
 .quick-actions {
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 16px);
+  bottom: calc(clamp(3%, 5vh, 8%) + 76px);
   transform: translateX(-50%);
   display: flex;
   flex-wrap: wrap;
@@ -2030,11 +2092,19 @@ body.ui-hidden .show-ui {
   }
 
   .search-orb {
-    width: min(92vw, 567px);
     max-width: calc(100vw - 72px);
+  }
+
+  .glass-input {
+    width: clamp(280px, 88vw, 567px);
   }
 
   .quick-actions {
     max-width: calc(100vw - 72px);
+    bottom: calc(clamp(3%, 5vh, 8%) + 70px);
+  }
+
+  .shortcut:hover {
+    transform: scale(1.2);
   }
 }
