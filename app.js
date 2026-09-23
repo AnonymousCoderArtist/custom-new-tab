@@ -317,6 +317,9 @@ function renderShortcuts() {
   const grid = $("shortcutGrid");
   grid.innerHTML = "";
   state.shortcuts.forEach((item, index) => {
+    const wrap = document.createElement("div");
+    wrap.className = "shortcut-wrap";
+
     const a = document.createElement("a");
     a.className = "shortcut";
     a.href = item.url;
@@ -339,11 +342,14 @@ function renderShortcuts() {
     span.className = "name";
     span.textContent = item.name;
 
+    a.append(img, span);
+
     const del = document.createElement("button");
     del.className = "del";
     del.type = "button";
     del.textContent = "×";
     del.title = "Remove";
+    del.setAttribute("aria-label", `Remove ${item.name}`);
     del.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -354,8 +360,8 @@ function renderShortcuts() {
       renderManage();
     });
 
-    a.append(img, span, del);
-    grid.appendChild(a);
+    wrap.append(a, del);
+    grid.appendChild(wrap);
   });
 }
 
