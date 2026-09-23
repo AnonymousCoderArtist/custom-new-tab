@@ -17,7 +17,7 @@
 html,
 body {
   height: 100%;
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Geist", "Segoe UI", system-ui, -apple-system, sans-serif;
   color: var(--text);
   background: transparent;
   overflow: hidden;

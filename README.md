@@ -10,6 +10,7 @@ Default dashboard link:
 
 - Split view: map on the left, search and controls on the right
 - Vertical macOS-style dock for all shortcuts
+- Geist font (Vercel)
 - Live animated wallpapers, anime live wallpapers, and car live wallpapers
 - Multiple themes: Midnight, Ocean, Sunset, Forest, Rose, Graphite
 - Live clock, date, and greeting
