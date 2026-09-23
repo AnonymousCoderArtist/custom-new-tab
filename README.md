@@ -8,12 +8,16 @@ Default dashboard link:
 
 ## Features
 
+- Split view: map on the left, search and controls on the right
+- Vertical macOS-style dock for all shortcuts
+- Live animated wallpapers, anime live wallpapers, and car live wallpapers
+- Multiple themes: Midnight, Ocean, Sunset, Forest, Rose, Graphite
 - Live clock, date, and greeting
 - World Monitor dashboard with your exact view
 - Shortcuts for AI Studio, ChatGPT, Gemini, DeepSeek, Qwen, Claude, YouTube, Google, Instagram, GitHub, and more
-- Custom accent, wallpaper, search engine, and dashboard URL
-- Add or remove shortcuts
-- Hide UI for a clean dashboard view
+- Custom accent, search engine, and dashboard URL
+- Add or remove dock icons
+- Hide UI for a clean map view
 
 ## Run locally
 
@@ -35,4 +39,4 @@ If GitHub Pages cannot load the dashboard in the browser, use Vercel instead. Th
 
 ## Customize
 
-Click the gear icon to change wallpaper, accent color, search engine, and dashboard URL.
+Click **Themes** on the right panel to switch theme, wallpaper, accent color, search engine, and dashboard URL.

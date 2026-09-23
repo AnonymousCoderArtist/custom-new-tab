@@ -7,51 +7,66 @@
   <link rel="icon" href="https://www.google.com/s2/favicons?domain=worldmonitor.app&sz=64" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <div class="bg" id="bg"></div>
+<body class="theme-midnight">
+  <div class="bg live" id="bg"></div>
+  <video id="bgVideo" class="bg-video" autoplay muted loop playsinline></video>
 
-  <iframe id="dash" class="dash" title="World Monitor"></iframe>
+  <div class="layout">
+    <nav class="dock" id="dock" aria-label="Shortcuts"></nav>
 
-  <div id="dashFallback" class="dash-fallback">
-    <div class="dash-fallback-card">
-      <h2>World Monitor</h2>
-      <p>Live dashboard could not be embedded here. Open it directly with your exact view.</p>
-      <a id="dashFallbackLink" href="#" target="_blank" rel="noopener">Open dashboard</a>
-    </div>
-  </div>
+    <main class="map-area" id="mapArea">
+      <iframe id="dash" class="dash" title="World Monitor"></iframe>
 
-  <div class="ui" id="ui">
-    <header class="top">
-      <div class="time-block">
-        <div class="clock" id="clock">00:00</div>
-        <div class="date" id="date"></div>
-        <div class="greet" id="greet">Hello</div>
+      <div id="dashFallback" class="dash-fallback">
+        <div class="dash-fallback-card">
+          <h2>World Monitor</h2>
+          <p>Live dashboard could not be embedded here. Open it directly with your exact view.</p>
+          <a id="dashFallbackLink" href="#" target="_blank" rel="noopener">Open dashboard</a>
+        </div>
       </div>
 
-      <div class="top-actions">
-        <button class="chip active" id="modeDash" type="button">Dashboard</button>
+      <div class="home-hero" id="homeHero">
+        <div class="home-clock" id="clock">00:00</div>
+        <div class="home-date" id="date"></div>
+        <div class="home-greet" id="greet">Hello</div>
+      </div>
+    </main>
+
+    <aside class="panel" id="panel">
+      <div class="panel-top">
+        <div class="mini-clock" id="miniClock">00:00</div>
+        <div class="mini-date" id="miniDate"></div>
+        <div class="mini-greet" id="miniGreet">Hello</div>
+      </div>
+
+      <form class="search" id="searchForm">
+        <input id="searchInput" type="text" placeholder="Search the web..." autocomplete="off" />
+        <button type="submit">Go</button>
+      </form>
+
+      <div class="panel-actions">
+        <button class="chip active" id="modeDash" type="button">Map</button>
         <button class="chip" id="modeHome" type="button">Home</button>
-        <button class="icon-btn" id="fullscreenBtn" type="button" title="Fullscreen dashboard">⛶</button>
-        <button class="icon-btn" id="settingsBtn" type="button" title="Settings">⚙</button>
+        <button class="chip" id="addBtn" type="button">+ Add</button>
+        <button class="chip" id="settingsBtn" type="button">Themes</button>
+        <button class="chip" id="fullscreenBtn" type="button">Full</button>
       </div>
-    </header>
 
-    <form class="search" id="searchForm">
-      <input id="searchInput" type="text" placeholder="Search the web..." autocomplete="off" />
-      <button type="submit">Search</button>
-    </form>
+      <div class="panel-card">
+        <h3>Dock</h3>
+        <p>All your shortcuts live in the dock on the left, like macOS. Hover an icon for the name. Use + Add to put more sites there.</p>
+      </div>
 
-    <div class="section-head">
-      <h2>Shortcuts</h2>
-      <button class="ghost" id="addBtn" type="button">+ Add</button>
-    </div>
+      <div class="panel-card">
+        <h3>Dashboard</h3>
+        <p class="dash-link" id="dashLink">Open exact World Monitor view in a new tab</p>
+      </div>
 
-    <div class="grid" id="grid"></div>
-
-    <footer class="foot">
-      <span id="footNote">press / to search</span>
-      <button class="ghost" id="hideUiBtn" type="button">Hide UI</button>
-    </footer>
+      <div class="panel-foot">
+        <span>press / to search</span>
+        <button class="chip" id="hideUiBtn" type="button">Hide UI</button>
+      </div>
+    </aside>
   </div>
 
   <button class="show-ui" id="showUiBtn" type="button">Show UI</button>
@@ -59,13 +74,18 @@
   <div class="modal-back" id="settingsModal">
     <div class="modal">
       <div class="modal-head">
-        <h3>Settings</h3>
+        <h3>Themes & settings</h3>
         <button class="icon-btn" data-close type="button">×</button>
+      </div>
+
+      <div class="field">
+        <span>Theme</span>
+        <div class="theme-row" id="themeRow"></div>
       </div>
 
       <label class="field">
         <span>Accent color</span>
-        <input type="color" id="accentInput" value="#7c5cff" />
+        <input type="color" id="accentInput" value="#3b82f6" />
       </label>
 
       <label class="field">
@@ -96,7 +116,7 @@
 
       <label class="check">
         <input type="checkbox" id="showDashInput" checked />
-        <span>Show dashboard on new tab</span>
+        <span>Show map on start</span>
       </label>
 
       <div class="modal-actions">
@@ -109,7 +129,7 @@
   <div class="modal-back" id="addModal">
     <div class="modal">
       <div class="modal-head">
-        <h3>Add shortcut</h3>
+        <h3>Add to dock</h3>
         <button class="icon-btn" data-close type="button">×</button>
       </div>
 
