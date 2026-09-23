@@ -1128,10 +1128,9 @@ a {
 .search-orb {
   position: absolute;
   left: 50%;
-  top: 58%;
-  bottom: auto;
-  transform: translate(-50%, -50%);
-  width: max-content;
+  bottom: clamp(3%, 5vh, 8%);
+  transform: translateX(-50%);
+  width: clamp(320px, 45vw, 567px);
   max-width: calc(100vw - 48px);
   display: flex;
   flex-direction: column;
@@ -1141,7 +1140,7 @@ a {
 
 .glass-input {
   position: relative;
-  width: clamp(320px, 45vw, 567px);
+  width: 100%;
   max-width: 100%;
   border-radius: 29px;
   overflow: hidden;
@@ -1192,7 +1191,7 @@ a {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 8px 8px 20px;
+  padding: clamp(6px, 1vh, 12px) clamp(12px, 2vw, 20px);
   min-height: 56px;
 }
 
@@ -1348,26 +1347,20 @@ a {
   z-index: 0;
 }
 
+.shortcut-wrap .shortcut {
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
 .shortcut-wrap:hover .shortcut {
-  transform: scale(1.35);
+  transform: scale(1.08);
   border-color: rgba(255, 255, 255, 0.35);
   background: rgba(255, 255, 255, 0.06);
   color: transparent;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4), inset 1px 1px 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 1px 1px 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .shortcut-wrap:hover {
   z-index: 5;
-}
-
-.shortcut-wrap:hover + .shortcut-wrap .shortcut,
-.shortcut-wrap:has(+ .shortcut-wrap:hover) .shortcut {
-  transform: scale(1.18);
-}
-
-.shortcut-wrap:hover + .shortcut-wrap + .shortcut-wrap .shortcut,
-.shortcut-wrap:has(+ .shortcut-wrap + .shortcut-wrap:hover) .shortcut {
-  transform: scale(1.08);
 }
 
 .shortcut img,
@@ -1434,10 +1427,8 @@ a {
 .ghost,
 .primary,
 .icon-btn {
-  border: 1px solid rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.3);
-  background: linear-gradient(180deg,
-    rgba(var(--dialog-bg-start-r), var(--dialog-bg-start-g), var(--dialog-bg-start-b), 0.9) 0%,
-    rgba(var(--dialog-bg-end-r), var(--dialog-bg-end-g), var(--dialog-bg-end-b), 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: rgb(var(--text-bright-r), var(--text-bright-g), var(--text-bright-b));
@@ -1449,27 +1440,33 @@ a {
   cursor: pointer;
   text-decoration: none;
   transition: 0.15s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    inset 1px 1px 1px 0 rgba(255, 255, 255, 0.25),
+    inset -1px -1px 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .chip-btn:hover,
 .ghost:hover,
 .icon-btn:hover {
-  background: linear-gradient(135deg,
-    rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.2),
-    rgba(0, 100, 255, 0.08));
-  border-color: rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.45);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 1px 1px 1px 0 rgba(255, 255, 255, 0.3),
+    inset -1px -1px 1px 0 rgba(255, 255, 255, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.35);
   transform: translateY(-1px);
 }
 
 .chip-btn.active,
 .primary {
-  background: linear-gradient(135deg,
-    rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.2),
-    rgba(0, 100, 255, 0.08));
-  border: 1px solid rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.35);
-  box-shadow: 0 0 20px rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.15), inset 0 0 10px rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.05);
-  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    inset 1px 1px 1px 0 rgba(255, 255, 255, 0.3),
+    inset -1px -1px 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 20px rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.15);
+  border-radius: 999px;
 }
 
 .ghost {
@@ -1493,8 +1490,7 @@ a {
 .quick-actions {
   position: absolute;
   left: 50%;
-  top: calc(58% + 56px);
-  bottom: auto;
+  bottom: calc(clamp(3%, 5vh, 8%) + 76px);
   transform: translateX(-50%);
   display: flex;
   flex-wrap: wrap;
@@ -2121,19 +2117,18 @@ body.ui-hidden .show-ui {
 
   .search-orb {
     max-width: calc(100vw - 72px);
-    top: 56%;
   }
 
   .glass-input {
-    width: clamp(280px, 88vw, 567px);
+    width: 100%;
   }
 
   .quick-actions {
     max-width: calc(100vw - 72px);
-    top: calc(56% + 56px);
+    bottom: calc(clamp(3%, 5vh, 8%) + 70px);
   }
 
   .shortcut-wrap:hover .shortcut {
-    transform: scale(1.2);
+    transform: scale(1.06);
   }
 }
