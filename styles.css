@@ -1110,6 +1110,10 @@ a {
   word-break: break-word;
 }
 
+:root {
+  --search-size: clamp(320px, 45vw, 567px);
+}
+
 .search-orb {
   position: absolute;
   left: 50%;
@@ -1126,7 +1130,8 @@ a {
 
 .glass-input {
   position: relative;
-  width: clamp(320px, 45vw, 567px);
+  width: var(--search-size);
+  height: var(--search-size);
   max-width: 100%;
   border-radius: 29px;
   overflow: hidden;
@@ -1178,7 +1183,8 @@ a {
   align-items: center;
   gap: 8px;
   padding: clamp(6px, 1vh, 12px) clamp(12px, 2vw, 20px);
-  min-height: 56px;
+  height: 100%;
+  min-height: 0;
 }
 
 .glass-form input {
@@ -1487,7 +1493,7 @@ a {
 .quick-actions {
   position: absolute;
   left: 50%;
-  top: calc(58% + 56px);
+  top: calc(58% + var(--search-size) / 2 + 16px);
   bottom: auto;
   transform: translateX(-50%);
   display: flex;
@@ -2123,12 +2129,13 @@ body.ui-hidden .show-ui {
   }
 
   .glass-input {
-    width: min(clamp(320px, 45vw, 567px), calc(100vw - 72px));
+    width: min(var(--search-size), calc(100vw - 72px));
+    height: min(var(--search-size), calc(100vw - 72px));
   }
 
   .quick-actions {
     max-width: calc(100vw - 72px);
-    top: calc(58% + 56px);
+    top: calc(58% + min(var(--search-size), calc(100vw - 72px)) / 2 + 14px);
     bottom: auto;
   }
 
