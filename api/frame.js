@@ -58,7 +58,7 @@ module.exports = async function handler(req, res) {
     res.statusCode = 502;
     res.setHeader("content-type", "text/html; charset=utf-8");
     res.end(
-      `<!DOCTYPE html><html><body style="background:#070810;color:#fff;font-family:system-ui;display:flex;align-items:center;justify-content:center;height:100vh;margin:0"><div style="text-align:center"><h2>Dashboard unavailable</h2><p style="opacity:.7">Could not load World Monitor right now.</p><p><a style="color:#7c5cff" href="${DEFAULT_URL}" target="_blank" rel="noopener">Open on worldmonitor.app</a></p></div></body></html>`
+      `<!DOCTYPE html><html><body style="background:#070810;color:#fff;font-family:system-ui;display:flex;align-items:center;justify-content:center;height:100vh;margin:0"><div style="text-align:center"><h2>Dashboard unavailable</h2><p style="opacity:.7">Could not load World Monitor right now.</p><p><a style="color:#3b82f6" href="${DEFAULT_URL}" target="_blank" rel="noopener">Open on worldmonitor.app</a></p></div></body></html>`
     );
   }
 };

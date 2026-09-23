@@ -69,32 +69,34 @@ const THEMES = {
 };
 
 const LIVE_VIDEOS = [
-  "https://videos.pexels.com/video-files/30996080/13250028_3840_2160_60fps.mp4",
-  "https://videos.pexels.com/video-files/32284504/13768356_1920_1080_60fps.mp4",
-  "https://videos.pexels.com/video-files/31424703/13404667_3840_2160_30fps.mp4",
-  "https://videos.pexels.com/video-files/30418728/13035271_1920_1080_24fps.mp4",
-  "https://videos.pexels.com/video-files/36223937/15362123_1920_1080_120fps.mp4",
-  "https://videos.pexels.com/video-files/4568863/4568863-hd_1920_1080_30fps.mp4",
-  "https://videos.pexels.com/video-files/29354127/12650284_1920_1080_30fps.mp4",
-  "https://videos.pexels.com/video-files/36223586/15361593_1920_1080_120fps.mp4"
+  "https://cdn.pixabay.com/video/2024/06/05/215407_large.mp4",
+  "https://cdn.pixabay.com/video/2024/05/30/214500_large.mp4",
+  "https://cdn.pixabay.com/video/2024/09/03/229513_large.mp4",
+  "https://cdn.pixabay.com/video/2021/10/01/90408-626004752_large.mp4",
+  "https://cdn.pixabay.com/video/2025/02/26/261085_large.mp4",
+  "https://cdn.pixabay.com/video/2024/10/08/235338_large.mp4",
+  "https://cdn.pixabay.com/video/2024/03/01/202600-918484146_large.mp4",
+  "https://cdn.pixabay.com/video/2022/08/21/128646-741704858_large.mp4",
+  "https://cdn.pixabay.com/video/2024/09/13/231156_large.mp4"
 ];
 
 const WALLPAPERS = [
-  { id: "live-aurora", label: "Live Aurora", live: true, bg: "linear-gradient(120deg,#020617,#0c4a6e,#0f766e,#0e7490,#020617)" },
-  { id: "live-fire", label: "Live Fire", live: true, bg: "linear-gradient(120deg,#1c1917,#9a3412,#b91c1c,#7c2d12,#1c1917)" },
-  { id: "live-forest", label: "Live Forest", live: true, bg: "linear-gradient(120deg,#052e16,#166534,#4d7c0f,#14532d,#052e16)" },
-  { id: "live-ocean", label: "Live Ocean", live: true, bg: "linear-gradient(120deg,#082f49,#0e7490,#155e75,#1e3a8a,#082f49)" },
-  { id: "live-sunset", label: "Live Sunset", live: true, bg: "linear-gradient(120deg,#450a0a,#9f1239,#ea580c,#713f12,#450a0a)" },
-  { id: "live-neon", label: "Live Neon", live: true, bg: "linear-gradient(120deg,#020617,#0f172a,#0e7490,#0c4a6e,#020617)" },
-  { id: "live-graphite", label: "Live Graphite", live: true, bg: "linear-gradient(120deg,#09090b,#18181b,#27272a,#18181b,#09090b)" },
-  { id: "anime-akihabara", label: "Anime Akihabara", video: LIVE_VIDEOS[0] },
-  { id: "anime-tokyo", label: "Anime Tokyo Neon", video: LIVE_VIDEOS[1] },
-  { id: "anime-sakura", label: "Anime Sakura", video: LIVE_VIDEOS[2] },
-  { id: "car-night", label: "Car Night Culture", video: LIVE_VIDEOS[3] },
-  { id: "car-drift", label: "Car Drift Road", video: LIVE_VIDEOS[4] },
-  { id: "car-bmw", label: "Car BMW Drift", video: LIVE_VIDEOS[5] },
-  { id: "car-sunset", label: "Car Drift Sunset", video: LIVE_VIDEOS[6] },
-  { id: "car-sport", label: "Car Sport Red", video: LIVE_VIDEOS[7] },
+  { id: "live-aurora", label: "Live Aurora", live: true, bg: "linear-gradient(120deg,#020617,#0369a1,#0d9488,#0284c7,#020617)" },
+  { id: "live-fire", label: "Live Fire", live: true, bg: "linear-gradient(120deg,#1c1917,#ea580c,#dc2626,#b45309,#1c1917)" },
+  { id: "live-forest", label: "Live Forest", live: true, bg: "linear-gradient(120deg,#052e16,#16a34a,#65a30d,#15803d,#052e16)" },
+  { id: "live-ocean", label: "Live Ocean", live: true, bg: "linear-gradient(120deg,#082f49,#0ea5e9,#06b6d4,#2563eb,#082f49)" },
+  { id: "live-sunset", label: "Live Sunset", live: true, bg: "linear-gradient(120deg,#450a0a,#e11d48,#f97316,#ca8a04,#450a0a)" },
+  { id: "live-neon", label: "Live Neon", live: true, bg: "linear-gradient(120deg,#020617,#0f172a,#06b6d4,#0284c7,#020617)" },
+  { id: "live-graphite", label: "Live Graphite", live: true, bg: "linear-gradient(120deg,#09090b,#3f3f46,#71717a,#3f3f46,#09090b)" },
+  { id: "anime-lofi-study", label: "Anime Lofi Study", video: LIVE_VIDEOS[0] },
+  { id: "anime-study", label: "Anime Study", video: LIVE_VIDEOS[1] },
+  { id: "anime-rain", label: "Anime Rain Night", video: LIVE_VIDEOS[2] },
+  { id: "anime-train", label: "Anime Train Sunset", video: LIVE_VIDEOS[3] },
+  { id: "anime-roof", label: "Anime Roof Sunset", video: LIVE_VIDEOS[4] },
+  { id: "anime-glitter", label: "Anime Glitter Girl", video: LIVE_VIDEOS[5] },
+  { id: "anime-umbrella", label: "Anime Umbrella", video: LIVE_VIDEOS[6] },
+  { id: "anime-obito", label: "Anime Obito", video: LIVE_VIDEOS[7] },
+  { id: "anime-forest", label: "Anime Forest Rain", video: LIVE_VIDEOS[8] },
   { id: "photo-earth", label: "Photo Earth", bg: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80')" },
   { id: "photo-space", label: "Photo Space", bg: "url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1920&q=80')" },
   { id: "photo-city", label: "Photo City", bg: "url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1920&q=80')" }
@@ -151,10 +153,15 @@ const $ = (id) => document.getElementById(id);
 
 function loadState() {
   try {
-    const raw = localStorage.getItem("newtab_state_v3");
+    const raw = localStorage.getItem("newtab_state_v4");
     if (!raw) return structuredClone(defaultState);
     const saved = JSON.parse(raw);
     if (saved.dashUrl === OLD_DASH) saved.dashUrl = DEFAULT_DASH;
+    if (!saved.wallpaperId) {
+      saved.wallpaperId = defaultWallpaper.id;
+      saved.bg = defaultWallpaper.bg;
+      saved.video = "";
+    }
     return { ...structuredClone(defaultState), ...saved };
   } catch {
     return structuredClone(defaultState);
@@ -162,7 +169,7 @@ function loadState() {
 }
 
 function saveState() {
-  localStorage.setItem("newtab_state_v3", JSON.stringify(state));
+  localStorage.setItem("newtab_state_v4", JSON.stringify(state));
 }
 
 function favicon(url) {
@@ -177,22 +184,35 @@ function favicon(url) {
 function applyWallpaper() {
   const bg = $("bg");
   const video = $("bgVideo");
-  const wp = WALLPAPERS.find((w) => w.id === state.wallpaperId);
+  const wp = WALLPAPERS.find((w) => w.id === state.wallpaperId) || defaultWallpaper;
 
   if (state.video) {
-    bg.style.background = state.bg;
     bg.classList.remove("live");
-    if (video.src !== state.video) video.src = state.video;
+    bg.style.backgroundImage = "";
+    if (!video.src || !video.src.includes(state.video)) {
+      video.src = state.video;
+      video.load();
+    }
     video.classList.add("on");
     video.play().catch(() => {});
     return;
   }
 
   video.classList.remove("on");
+  video.pause();
   video.removeAttribute("src");
   video.load();
-  bg.style.background = state.bg;
-  bg.classList.toggle("live", Boolean(wp && wp.live));
+  bg.style.backgroundImage = state.bg.startsWith("url(") || state.bg.startsWith("linear") || state.bg.startsWith("radial") ? state.bg : "";
+  if (state.bg.startsWith("url(") || state.bg.startsWith("linear") || state.bg.startsWith("radial")) {
+    bg.style.background = state.bg;
+    bg.style.backgroundSize = "400% 400%";
+  }
+  bg.classList.toggle("live", Boolean(wp.live));
+  if (wp.live) {
+    bg.style.animation = "none";
+    void bg.offsetWidth;
+    bg.style.animation = "";
+  }
 }
 
 function applyTheme() {

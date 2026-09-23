@@ -12,8 +12,9 @@ Default dashboard link:
 
 - Split view: map on the left, search and controls on the right
 - Vertical macOS-style dock for all shortcuts
-- Square glass UI with Geist font
+- Rounded glassmorphism UI with local Geist font
 - macOS-style dock magnify animation
+- Live animated wallpapers (gradients + real anime videos)
 - Multiple themes (no purple): Midnight, Ocean, Sunset, Forest, Ember, Crimson, Ice, Graphite, Lime
 - Live clock, date, and greeting
 - World Monitor dashboard with your exact view

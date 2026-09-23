@@ -1,12 +1,60 @@
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("fonts/GeistMono-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --accent: #3b82f6;
-  --panel: rgba(8, 10, 14, 0.55);
+  --panel: rgba(8, 10, 14, 0.5);
   --panel-border: rgba(255, 255, 255, 0.14);
   --text: #f4f6fa;
   --muted: rgba(244, 246, 250, 0.6);
-  --dock: rgba(8, 10, 14, 0.55);
-  --radius: 0px;
-  --blur: 22px;
+  --dock: rgba(8, 10, 14, 0.5);
+  --radius: 18px;
+  --blur: 24px;
 }
 
 * {
@@ -20,7 +68,7 @@ body {
   height: 100%;
   font-family: "Geist", "Segoe UI", system-ui, -apple-system, sans-serif;
   color: var(--text);
-  background: transparent;
+  background: #07080c;
   overflow: hidden;
 }
 
@@ -35,23 +83,23 @@ select {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background-size: 400% 400%;
-  background-position: 0% 50%;
+  background-size: 400% 400% !important;
+  background-position: 0% 50% !important;
 }
 
 .bg.live {
-  animation: liveShift 16s ease infinite;
+  animation: liveShift 14s ease infinite;
 }
 
 @keyframes liveShift {
   0% {
-    background-position: 0% 50%;
+    background-position: 0% 40%;
   }
   50% {
-    background-position: 100% 50%;
+    background-position: 100% 60%;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: 0% 40%;
   }
 }
 
@@ -63,7 +111,6 @@ select {
   object-fit: cover;
   z-index: 0;
   display: none;
-  background: #000;
 }
 
 .bg-video.on {
@@ -82,7 +129,7 @@ select {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   padding: 16px 0;
   background: var(--dock);
   border-right: 1px solid var(--panel-border);
@@ -100,9 +147,11 @@ select {
   position: relative;
   width: 52px;
   height: 52px;
-  border-radius: 0;
+  border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,9 +164,9 @@ select {
 
 .dock-item:hover {
   transform: scale(1.4);
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.16);
   border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
   z-index: 3;
 }
 
@@ -137,7 +186,7 @@ select {
 .dock-item .letter {
   width: 30px;
   height: 30px;
-  border-radius: 0;
+  border-radius: 8px;
   object-fit: cover;
   display: flex;
   align-items: center;
@@ -152,7 +201,7 @@ select {
   left: calc(100% + 14px);
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(6, 8, 12, 0.92);
+  background: rgba(6, 8, 12, 0.9);
   border: 1px solid var(--panel-border);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -160,7 +209,7 @@ select {
   font-size: 12px;
   font-weight: 500;
   padding: 7px 11px;
-  border-radius: 0;
+  border-radius: 10px;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
@@ -178,7 +227,7 @@ select {
   right: -5px;
   width: 18px;
   height: 18px;
-  border-radius: 0;
+  border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: #ef4444;
   color: #fff;
@@ -195,9 +244,11 @@ select {
 .dock-add {
   width: 52px;
   height: 52px;
-  border-radius: 0;
+  border-radius: 14px;
   border: 1px dashed rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--muted);
   font-size: 22px;
   cursor: pointer;
@@ -225,7 +276,6 @@ select {
   height: 100%;
   border: 0;
   display: none;
-  background: transparent;
 }
 
 body.mode-dashboard .dash {
@@ -245,6 +295,7 @@ body.mode-dashboard .home-hero {
   justify-content: center;
   text-align: center;
   padding: 24px;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
 
 .home-clock {
@@ -256,7 +307,7 @@ body.mode-dashboard .home-hero {
 
 .home-date {
   margin-top: 10px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.75);
   font-size: 16px;
 }
 
@@ -272,14 +323,14 @@ body.mode-dashboard .home-hero {
   display: none;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.25);
   padding: 20px;
 }
 
 .dash-fallback-card {
   text-align: center;
   padding: 36px;
-  border-radius: 0;
+  border-radius: var(--radius);
   background: var(--panel);
   border: 1px solid var(--panel-border);
   backdrop-filter: blur(var(--blur));
@@ -305,7 +356,7 @@ body.mode-dashboard .home-hero {
   background: var(--accent);
   color: #fff;
   text-decoration: none;
-  border-radius: 0;
+  border-radius: 999px;
   padding: 12px 18px;
   font-weight: 500;
 }
@@ -347,32 +398,31 @@ body.mode-dashboard .home-hero {
 
 .search {
   display: flex;
-  gap: 0;
-  border: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  gap: 8px;
 }
 
 .search input {
   flex: 1;
   min-width: 0;
-  border: 0;
-  background: transparent;
-  padding: 13px 14px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 999px;
+  padding: 13px 16px;
   outline: none;
 }
 
 .search input:focus {
-  box-shadow: inset 0 0 0 1px var(--accent);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 
 .search button {
   border: none;
-  border-left: 1px solid var(--panel-border);
   background: var(--accent);
   color: #fff;
-  border-radius: 0;
+  border-radius: 999px;
   padding: 0 16px;
   cursor: pointer;
   font-weight: 600;
@@ -389,11 +439,11 @@ body.mode-dashboard .home-hero {
 .primary,
 .icon-btn {
   border: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 0;
-  padding: 9px 13px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 999px;
+  padding: 9px 14px;
   cursor: pointer;
   transition: 0.16s ease;
   font-weight: 500;
@@ -403,7 +453,8 @@ body.mode-dashboard .home-hero {
 .ghost:hover,
 .icon-btn:hover {
   border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
 }
 
 .chip.active {
@@ -430,10 +481,10 @@ body.mode-dashboard .home-hero {
 
 .panel-card {
   border: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 0;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: var(--radius);
   padding: 14px;
 }
 
@@ -484,7 +535,7 @@ body.ui-hidden .layout {
   backdrop-filter: blur(var(--blur));
   -webkit-backdrop-filter: blur(var(--blur));
   color: var(--text);
-  border-radius: 0;
+  border-radius: 999px;
   padding: 11px 16px;
   cursor: pointer;
 }
@@ -514,7 +565,7 @@ body.ui-hidden .show-ui {
   border: 1px solid var(--panel-border);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border-radius: 0;
+  border-radius: 22px;
   padding: 22px;
   display: flex;
   flex-direction: column;
@@ -546,8 +597,8 @@ body.ui-hidden .show-ui {
 .field input,
 .field select {
   border: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 0;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
   padding: 11px 12px;
   outline: none;
   color: var(--text);
@@ -573,10 +624,10 @@ body.ui-hidden .show-ui {
 
 .theme-btn {
   border: 2px solid transparent;
-  border-radius: 0;
+  border-radius: 14px;
   padding: 12px 8px;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--text);
   font-size: 13px;
   display: flex;
@@ -588,7 +639,7 @@ body.ui-hidden .show-ui {
 .theme-btn .swatch {
   width: 100%;
   height: 28px;
-  border-radius: 0;
+  border-radius: 8px;
 }
 
 .theme-btn.active {
@@ -603,7 +654,7 @@ body.ui-hidden .show-ui {
 
 .wallpapers button {
   height: 54px;
-  border-radius: 0;
+  border-radius: 12px;
   border: 2px solid transparent;
   cursor: pointer;
   background-size: cover;
