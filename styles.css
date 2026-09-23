@@ -1,11 +1,12 @@
 :root {
   --accent: #3b82f6;
-  --panel: rgba(10, 12, 18, 0.62);
-  --panel-border: rgba(255, 255, 255, 0.12);
-  --text: #f3f5f9;
-  --muted: rgba(243, 245, 249, 0.62);
-  --dock: rgba(10, 12, 18, 0.72);
-  --radius: 16px;
+  --panel: rgba(8, 10, 14, 0.55);
+  --panel-border: rgba(255, 255, 255, 0.14);
+  --text: #f4f6fa;
+  --muted: rgba(244, 246, 250, 0.6);
+  --dock: rgba(8, 10, 14, 0.55);
+  --radius: 0px;
+  --blur: 22px;
 }
 
 * {
@@ -73,7 +74,7 @@ select {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 78px 1fr 360px;
+  grid-template-columns: 84px 1fr 370px;
   height: 100%;
 }
 
@@ -81,13 +82,14 @@ select {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 14px 0;
+  gap: 8px;
+  padding: 16px 0;
   background: var(--dock);
   border-right: 1px solid var(--panel-border);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: visible;
 }
 
 .dock::-webkit-scrollbar {
@@ -98,53 +100,72 @@ select {
   position: relative;
   width: 52px;
   height: 52px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.06);
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   flex: 0 0 auto;
-  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+  transform-origin: center center;
+  transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.25, 1.2), box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  will-change: transform;
 }
 
 .dock-item:hover {
-  transform: scale(1.16) translateX(4px);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  transform: scale(1.4);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  z-index: 3;
+}
+
+.dock-item:hover + .dock-item,
+.dock-item:has(+ .dock-item:hover) {
+  transform: scale(1.22);
   z-index: 2;
+}
+
+.dock-item:hover + .dock-item + .dock-item,
+.dock-item:has(+ .dock-item + .dock-item:hover) {
+  transform: scale(1.1);
+  z-index: 1;
 }
 
 .dock-item img,
 .dock-item .letter {
   width: 30px;
   height: 30px;
-  border-radius: 8px;
+  border-radius: 0;
   object-fit: cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   background: rgba(255, 255, 255, 0.1);
 }
 
 .dock-item .tip {
   position: absolute;
-  left: calc(100% + 12px);
+  left: calc(100% + 14px);
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(8, 10, 14, 0.95);
+  background: rgba(6, 8, 12, 0.92);
   border: 1px solid var(--panel-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   color: var(--text);
   font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 8px;
+  font-weight: 500;
+  padding: 7px 11px;
+  border-radius: 0;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: 0.14s ease;
+  transition: 0.16s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 .dock-item:hover .tip {
@@ -153,12 +174,12 @@ select {
 
 .dock-item .del {
   position: absolute;
-  top: -4px;
-  right: -4px;
+  top: -5px;
+  right: -5px;
   width: 18px;
   height: 18px;
-  border-radius: 50%;
-  border: none;
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   background: #ef4444;
   color: #fff;
   font-size: 11px;
@@ -174,19 +195,21 @@ select {
 .dock-add {
   width: 52px;
   height: 52px;
-  border-radius: 14px;
-  border: 1px dashed rgba(255, 255, 255, 0.28);
-  background: transparent;
+  border-radius: 0;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--muted);
   font-size: 22px;
   cursor: pointer;
   flex: 0 0 auto;
+  transform-origin: center center;
+  transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.25, 1.2), border-color 0.2s ease, color 0.2s ease;
 }
 
 .dock-add:hover {
   color: var(--text);
   border-color: var(--accent);
-  transform: scale(1.08);
+  transform: scale(1.25);
 }
 
 .map-area {
@@ -226,7 +249,7 @@ body.mode-dashboard .home-hero {
 
 .home-clock {
   font-size: clamp(64px, 10vw, 120px);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -4px;
   line-height: 1;
 }
@@ -240,6 +263,7 @@ body.mode-dashboard .home-hero {
 .home-greet {
   margin-top: 8px;
   font-size: 22px;
+  font-weight: 500;
 }
 
 .dash-fallback {
@@ -254,16 +278,19 @@ body.mode-dashboard .home-hero {
 
 .dash-fallback-card {
   text-align: center;
-  padding: 32px;
-  border-radius: 20px;
+  padding: 36px;
+  border-radius: 0;
   background: var(--panel);
   border: 1px solid var(--panel-border);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
   max-width: 420px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
 .dash-fallback-card h2 {
   margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .dash-fallback-card p {
@@ -278,8 +305,9 @@ body.mode-dashboard .home-hero {
   background: var(--accent);
   color: #fff;
   text-decoration: none;
-  border-radius: 999px;
-  padding: 11px 18px;
+  border-radius: 0;
+  padding: 12px 18px;
+  font-weight: 500;
 }
 
 .panel {
@@ -289,7 +317,8 @@ body.mode-dashboard .home-hero {
   padding: 24px 20px;
   background: var(--panel);
   border-left: 1px solid var(--panel-border);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
   overflow-y: auto;
 }
 
@@ -299,7 +328,7 @@ body.mode-dashboard .home-hero {
 
 .mini-clock {
   font-size: 48px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -2px;
   line-height: 1;
 }
@@ -313,35 +342,40 @@ body.mode-dashboard .home-hero {
 .mini-greet {
   margin-top: 4px;
   font-size: 16px;
+  font-weight: 500;
 }
 
 .search {
   display: flex;
-  gap: 8px;
+  gap: 0;
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .search input {
   flex: 1;
   min-width: 0;
-  border: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 999px;
-  padding: 12px 16px;
+  border: 0;
+  background: transparent;
+  padding: 13px 14px;
   outline: none;
 }
 
 .search input:focus {
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 25%, transparent);
+  box-shadow: inset 0 0 0 1px var(--accent);
 }
 
 .search button {
   border: none;
+  border-left: 1px solid var(--panel-border);
   background: var(--accent);
   color: #fff;
-  border-radius: 999px;
+  border-radius: 0;
   padding: 0 16px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .panel-actions {
@@ -356,27 +390,31 @@ body.mode-dashboard .home-hero {
 .icon-btn {
   border: 1px solid var(--panel-border);
   background: rgba(255, 255, 255, 0.06);
-  border-radius: 999px;
-  padding: 8px 13px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0;
+  padding: 9px 13px;
   cursor: pointer;
   transition: 0.16s ease;
+  font-weight: 500;
 }
 
 .chip:hover,
 .ghost:hover,
 .icon-btn:hover {
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .chip.active {
   background: var(--accent);
-  border-color: transparent;
+  border-color: var(--accent);
   color: #fff;
 }
 
 .primary {
   background: var(--accent);
-  border-color: transparent;
+  border-color: var(--accent);
   color: #fff;
 }
 
@@ -392,23 +430,26 @@ body.mode-dashboard .home-hero {
 
 .panel-card {
   border: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0;
   padding: 14px;
 }
 
 .panel-card h3 {
-  font-size: 13px;
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.6px;
   color: var(--muted);
   margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .panel-card p {
   font-size: 14px;
   line-height: 1.5;
-  color: rgba(243, 245, 249, 0.85);
+  color: rgba(244, 246, 250, 0.88);
 }
 
 .dash-link {
@@ -440,10 +481,11 @@ body.ui-hidden .layout {
   z-index: 5;
   border: 1px solid var(--panel-border);
   background: var(--panel);
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
   color: var(--text);
-  border-radius: 999px;
-  padding: 10px 16px;
+  border-radius: 0;
+  padding: 11px 16px;
   cursor: pointer;
 }
 
@@ -454,7 +496,7 @@ body.ui-hidden .show-ui {
 .modal-back {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.58);
+  background: rgba(0, 0, 0, 0.55);
   display: none;
   align-items: center;
   justify-content: center;
@@ -467,16 +509,19 @@ body.ui-hidden .show-ui {
 }
 
 .modal {
-  width: min(480px, 100%);
-  background: rgba(12, 14, 20, 0.96);
+  width: min(500px, 100%);
+  background: rgba(10, 12, 16, 0.88);
   border: 1px solid var(--panel-border);
-  border-radius: 20px;
-  padding: 20px;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-radius: 0;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   gap: 14px;
   max-height: 90vh;
   overflow: auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
 .modal-head {
@@ -487,6 +532,7 @@ body.ui-hidden .show-ui {
 
 .modal-head h3 {
   font-size: 18px;
+  font-weight: 600;
 }
 
 .field {
@@ -501,7 +547,7 @@ body.ui-hidden .show-ui {
 .field select {
   border: 1px solid var(--panel-border);
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 11px 12px;
   outline: none;
   color: var(--text);
@@ -527,7 +573,7 @@ body.ui-hidden .show-ui {
 
 .theme-btn {
   border: 2px solid transparent;
-  border-radius: 12px;
+  border-radius: 0;
   padding: 12px 8px;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.05);
@@ -542,7 +588,7 @@ body.ui-hidden .show-ui {
 .theme-btn .swatch {
   width: 100%;
   height: 28px;
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .theme-btn.active {
@@ -557,7 +603,7 @@ body.ui-hidden .show-ui {
 
 .wallpapers button {
   height: 54px;
-  border-radius: 12px;
+  border-radius: 0;
   border: 2px solid transparent;
   cursor: pointer;
   background-size: cover;
@@ -577,7 +623,7 @@ body.ui-hidden .show-ui {
 
 @media (max-width: 980px) {
   .layout {
-    grid-template-columns: 70px 1fr;
+    grid-template-columns: 74px 1fr;
     grid-template-rows: 1fr auto;
   }
 

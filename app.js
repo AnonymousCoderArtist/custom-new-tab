@@ -7,43 +7,64 @@ const THEMES = {
     label: "Midnight",
     accent: "#3b82f6",
     bg: "radial-gradient(1200px 700px at 15% 10%, rgba(59,130,246,.35), transparent 60%), radial-gradient(900px 600px at 85% 80%, rgba(14,165,233,.2), transparent 55%), linear-gradient(160deg,#0b1020,#070810 55%,#0a1525)",
-    panel: "rgba(10, 12, 18, 0.62)",
-    dock: "rgba(10, 12, 18, 0.72)"
+    panel: "rgba(8, 10, 14, 0.55)",
+    dock: "rgba(8, 10, 14, 0.55)"
   },
   ocean: {
     label: "Ocean",
     accent: "#06b6d4",
     bg: "radial-gradient(1100px 700px at 20% 15%, rgba(6,182,212,.35), transparent 55%), radial-gradient(900px 600px at 90% 85%, rgba(16,185,129,.22), transparent 50%), linear-gradient(160deg,#071418,#061014 55%,#0a1a20)",
-    panel: "rgba(6, 14, 18, 0.62)",
-    dock: "rgba(6, 14, 18, 0.72)"
+    panel: "rgba(6, 14, 18, 0.55)",
+    dock: "rgba(6, 14, 18, 0.55)"
   },
   sunset: {
     label: "Sunset",
     accent: "#f59e0b",
     bg: "radial-gradient(1100px 700px at 80% 15%, rgba(245,158,11,.35), transparent 55%), radial-gradient(900px 600px at 10% 85%, rgba(239,68,68,.25), transparent 50%), linear-gradient(160deg,#1a1208,#120c08 55%,#1a1008)",
-    panel: "rgba(16, 12, 8, 0.62)",
-    dock: "rgba(16, 12, 8, 0.72)"
+    panel: "rgba(16, 12, 8, 0.55)",
+    dock: "rgba(16, 12, 8, 0.55)"
   },
   forest: {
     label: "Forest",
     accent: "#22c55e",
     bg: "radial-gradient(1100px 700px at 15% 80%, rgba(34,197,94,.3), transparent 55%), radial-gradient(900px 600px at 85% 15%, rgba(163,230,53,.2), transparent 50%), linear-gradient(160deg,#0a1610,#07120c 55%,#0c1a12)",
-    panel: "rgba(8, 14, 10, 0.62)",
-    dock: "rgba(8, 14, 10, 0.72)"
+    panel: "rgba(8, 14, 10, 0.55)",
+    dock: "rgba(8, 14, 10, 0.55)"
   },
-  rose: {
-    label: "Rose",
-    accent: "#f43f5e",
-    bg: "radial-gradient(1100px 700px at 20% 20%, rgba(244,63,94,.32), transparent 55%), radial-gradient(900px 600px at 90% 80%, rgba(251,146,60,.2), transparent 50%), linear-gradient(160deg,#180b10,#12080c 55%,#1a0c12)",
-    panel: "rgba(16, 8, 12, 0.62)",
-    dock: "rgba(16, 8, 12, 0.72)"
+  ember: {
+    label: "Ember",
+    accent: "#f97316",
+    bg: "radial-gradient(1100px 700px at 20% 20%, rgba(249,115,22,.32), transparent 55%), radial-gradient(900px 600px at 90% 80%, rgba(234,88,12,.22), transparent 50%), linear-gradient(160deg,#1a0e08,#140c08 55%,#1c100a)",
+    panel: "rgba(16, 10, 6, 0.55)",
+    dock: "rgba(16, 10, 6, 0.55)"
+  },
+  crimson: {
+    label: "Crimson",
+    accent: "#ef4444",
+    bg: "radial-gradient(1100px 700px at 20% 20%, rgba(239,68,68,.3), transparent 55%), radial-gradient(900px 600px at 90% 80%, rgba(251,146,60,.18), transparent 50%), linear-gradient(160deg,#180a0a,#120808 55%,#1a0c0c)",
+    panel: "rgba(16, 8, 8, 0.55)",
+    dock: "rgba(16, 8, 8, 0.55)"
+  },
+  ice: {
+    label: "Ice",
+    accent: "#38bdf8",
+    bg: "radial-gradient(1100px 700px at 20% 15%, rgba(56,189,248,.3), transparent 55%), radial-gradient(900px 600px at 90% 85%, rgba(125,211,252,.18), transparent 50%), linear-gradient(160deg,#0b1520,#081018 55%,#0c1822)",
+    panel: "rgba(8, 14, 20, 0.55)",
+    dock: "rgba(8, 14, 20, 0.55)"
   },
   graphite: {
     label: "Graphite",
     accent: "#e5e7eb",
-    bg: "radial-gradient(1100px 700px at 20% 20%, rgba(229,231,235,.18), transparent 55%), radial-gradient(900px 600px at 90% 80%, rgba(148,163,184,.16), transparent 50%), linear-gradient(160deg,#121418,#0b0c0e 55%,#15171c)",
-    panel: "rgba(12, 13, 16, 0.68)",
-    dock: "rgba(12, 13, 16, 0.78)"
+    bg: "radial-gradient(1100px 700px at 20% 20%, rgba(229,231,235,.16), transparent 55%), radial-gradient(900px 600px at 90% 80%, rgba(148,163,184,.14), transparent 50%), linear-gradient(160deg,#121418,#0b0c0e 55%,#15171c)",
+    panel: "rgba(10, 11, 14, 0.58)",
+    dock: "rgba(10, 11, 14, 0.58)"
+  },
+  lime: {
+    label: "Lime",
+    accent: "#a3e635",
+    bg: "radial-gradient(1100px 700px at 15% 20%, rgba(163,230,53,.28), transparent 55%), radial-gradient(900px 600px at 90% 80%, rgba(63,98,18,.25), transparent 50%), linear-gradient(160deg,#0f160a,#0c1208 55%,#121a0c)",
+    panel: "rgba(10, 14, 6, 0.55)",
+    dock: "rgba(10, 14, 6, 0.55)"
   }
 };
 
@@ -59,12 +80,13 @@ const LIVE_VIDEOS = [
 ];
 
 const WALLPAPERS = [
-  { id: "live-aurora", label: "Live Aurora", live: true, bg: "linear-gradient(120deg,#020617,#1e3a5f,#0f766e,#312e81,#020617)" },
+  { id: "live-aurora", label: "Live Aurora", live: true, bg: "linear-gradient(120deg,#020617,#0c4a6e,#0f766e,#0e7490,#020617)" },
   { id: "live-fire", label: "Live Fire", live: true, bg: "linear-gradient(120deg,#1c1917,#9a3412,#b91c1c,#7c2d12,#1c1917)" },
   { id: "live-forest", label: "Live Forest", live: true, bg: "linear-gradient(120deg,#052e16,#166534,#4d7c0f,#14532d,#052e16)" },
   { id: "live-ocean", label: "Live Ocean", live: true, bg: "linear-gradient(120deg,#082f49,#0e7490,#155e75,#1e3a8a,#082f49)" },
   { id: "live-sunset", label: "Live Sunset", live: true, bg: "linear-gradient(120deg,#450a0a,#9f1239,#ea580c,#713f12,#450a0a)" },
-  { id: "live-neon", label: "Live Neon", live: true, bg: "linear-gradient(120deg,#020617,#0f172a,#115e59,#164e63,#020617)" },
+  { id: "live-neon", label: "Live Neon", live: true, bg: "linear-gradient(120deg,#020617,#0f172a,#0e7490,#0c4a6e,#020617)" },
+  { id: "live-graphite", label: "Live Graphite", live: true, bg: "linear-gradient(120deg,#09090b,#18181b,#27272a,#18181b,#09090b)" },
   { id: "anime-akihabara", label: "Anime Akihabara", video: LIVE_VIDEOS[0] },
   { id: "anime-tokyo", label: "Anime Tokyo Neon", video: LIVE_VIDEOS[1] },
   { id: "anime-sakura", label: "Anime Sakura", video: LIVE_VIDEOS[2] },

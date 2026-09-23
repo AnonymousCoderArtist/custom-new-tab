@@ -10,9 +10,9 @@ Default dashboard link:
 
 - Split view: map on the left, search and controls on the right
 - Vertical macOS-style dock for all shortcuts
-- Geist font (Vercel)
-- Live animated wallpapers, anime live wallpapers, and car live wallpapers
-- Multiple themes: Midnight, Ocean, Sunset, Forest, Rose, Graphite
+- Square glass UI with Geist font
+- macOS-style dock magnify animation
+- Multiple themes (no purple): Midnight, Ocean, Sunset, Forest, Ember, Crimson, Ice, Graphite, Lime
 - Live clock, date, and greeting
 - World Monitor dashboard with your exact view
 - Shortcuts for AI Studio, ChatGPT, Gemini, DeepSeek, Qwen, Claude, YouTube, Google, Instagram, GitHub, and more
