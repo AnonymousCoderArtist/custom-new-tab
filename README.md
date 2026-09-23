@@ -1,6 +1,6 @@
 # Custom New Tab
 
-JARVIS-styled new tab with the World Monitor dashboard, sphere search, shortcuts, and live wallpaper.
+JARVIS-styled new tab with the World Monitor dashboard, glass side-dock shortcuts, and live wallpaper.
 
 **Live:** https://anonymouscoderartist.github.io/custom-new-tab/
 
@@ -10,7 +10,7 @@ Default dashboard link:
 
 ## Features
 
-- Same JARVIS assets and styling: rays, glow, mask grid, particles, box glows, logo
+- Same JARVIS assets and styling: rays, glow, mask grid, particles, box glows
 - Local Oxanium + Maven Pro fonts (preloaded)
 - Greeting hero text + TechSphere search + glass ask bar
 - Super Menu: clock, weather, todos, focus, notes, themes, wallpaper, tools, settings

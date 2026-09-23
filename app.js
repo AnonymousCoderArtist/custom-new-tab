@@ -496,86 +496,6 @@ async function loadWeather() {
   }
 }
 
-function initSphere() {
-  const stage = $("orbStage");
-  const svg = $("sphereSvg");
-  if (!stage || !svg) return;
-
-  const mainPaths = svg.querySelectorAll(".sphere-main path");
-  const secondaryPaths = svg.querySelectorAll(".sphere-secondary path");
-  const minimal = state.theme === "minimal";
-
-  if (minimal) {
-    mainPaths.forEach((p) => {
-      p.style.strokeWidth = "2.5";
-    });
-    secondaryPaths.forEach((p) => {
-      p.style.strokeWidth = "2";
-    });
-    return;
-  }
-
-  let startTime = performance.now();
-  let animRaf = 0;
-  const mainData = [];
-  const secData = [];
-
-  mainPaths.forEach((el, i) => {
-    mainData.push({ el, offset: i * 0.4, speed: 0.0025 });
-  });
-  secondaryPaths.forEach((el, i) => {
-    secData.push({ el, offset: i * 0.45, speed: 0.003 });
-  });
-
-  function animate(timestamp) {
-    if (!startTime) startTime = timestamp;
-    const elapsed = timestamp - startTime;
-    for (const data of mainData) {
-      const percent = (1 - Math.sin(data.offset + data.speed * elapsed)) / 2;
-      data.el.style.strokeWidth = String(2.5 + percent * 1.0);
-      data.el.style.stroke = `rgba(${Math.round(26 + percent * 54)}, ${Math.round(90 + percent * 70)}, 255, ${0.7 + percent * 0.3})`;
-      data.el.style.transform = `translate(${(percent - 0.5) * 5}px, ${(percent - 0.5) * 5}px)`;
-    }
-    for (const data of secData) {
-      const percent = (1 - Math.cos(data.offset + data.speed * elapsed)) / 2;
-      data.el.style.stroke = `rgba(${Math.round(0 + percent * 34)}, ${Math.round(68 + percent * 112)}, ${Math.round(204 + percent * 51)}, ${0.4 + percent * 0.5})`;
-      data.el.style.strokeWidth = String(2 + percent * 0.8);
-      data.el.style.transform = `translate(${(percent - 0.5) * 5}px, ${(percent - 0.5) * 5}px)`;
-    }
-    animRaf = requestAnimationFrame(animate);
-  }
-  animRaf = requestAnimationFrame(animate);
-
-  let mouseX = 0;
-  let mouseY = 0;
-  let targetRX = 0;
-  let targetRY = 0;
-  let tiltRaf = 0;
-
-  function onMouseMove(e) {
-    const cx = window.innerWidth / 2;
-    const cy = window.innerHeight / 2;
-    mouseX = (e.clientX - cx) / cx;
-    mouseY = (e.clientY - cy) / cy;
-  }
-
-  function updateTilt() {
-    targetRX += (mouseY * 15 - targetRX) * 0.05;
-    targetRY += (mouseX * 15 - targetRY) * 0.05;
-    stage.style.transform = `rotateX(${targetRX}deg) rotateY(${targetRY}deg)`;
-    tiltRaf = requestAnimationFrame(updateTilt);
-  }
-
-  document.addEventListener("mousemove", onMouseMove);
-  tiltRaf = requestAnimationFrame(updateTilt);
-
-  window.addEventListener("beforeunload", () => {
-    cancelAnimationFrame(animRaf);
-    cancelAnimationFrame(tiltRaf);
-    document.removeEventListener("mousemove", onMouseMove);
-  });
-}
-
 function renderThemeDots() {
   const box = $("themeDots");
   if (!box) return;
@@ -594,7 +514,6 @@ function renderThemeDots() {
       applyTheme();
       renderThemes();
       $("accentInput").value = state.accent;
-      initSphere();
     });
     box.appendChild(b);
   });
@@ -637,7 +556,6 @@ function renderThemes() {
       applyTheme();
       renderThemes();
       $("accentInput").value = state.accent;
-      initSphere();
     });
     grid.appendChild(b);
   });
@@ -756,10 +674,6 @@ function bind() {
     e.preventDefault();
     const q = $("searchInput").value.trim();
     if (q) window.open(state.engine + encodeURIComponent(q), "_blank");
-  });
-
-  document.querySelector(".orb-stage")?.addEventListener("click", () => {
-    $("searchInput").focus();
   });
 
   $("micBtn").addEventListener("click", () => {
@@ -985,7 +899,6 @@ function start() {
   tick();
   setInterval(tick, 1000);
   loadWeather();
-  initSphere();
   if (state.showDash) openMap();
   else closeMap();
 }
