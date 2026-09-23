@@ -303,11 +303,6 @@
   100% { background-position: -50% 50%; }
 }
 
-@keyframes smbSheen {
-  0%, 100% { opacity: 0.15; transform: translateX(-8%); }
-  50% { opacity: 0.4; transform: translateX(8%); }
-}
-
 @keyframes dockPop {
   0% { transform: scale(1); }
   100% { transform: scale(1.4); }
@@ -866,16 +861,6 @@ a {
 
 .super-menu-btn:hover {
   transform: scale(1.05);
-}
-
-.smb-shine {
-  position: absolute;
-  inset: 0;
-  border-radius: 100px;
-  background: radial-gradient(ellipse at 50% 62.5%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 1) 100%);
-  opacity: 0.2;
-  pointer-events: none;
-  animation: smbSheen 2.8s ease-in-out infinite;
 }
 
 .smb-border {
