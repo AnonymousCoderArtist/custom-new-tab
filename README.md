@@ -39,24 +39,9 @@ Then open http://localhost:3000
 
 ## AI Usage
 
-I used AI (Claude / opencode) when building this project. Being specific:
+AI (Claude / opencode) scaffolded the first files, helped with CSS and the World Monitor embed, and drafted earlier READMEs. After feedback I rewrote this README and the disclosure myself, then added keyboard shortcuts and rewrote todos / focus / clock (AI drafted those under my direction).
 
-**What AI helped with**
-
-- Scaffolding the first version of `index.html`, `app.js`, `styles.css`, and `server.js`
-- Debugging CSS layout iterations (search bar placement, dock hover wave, Super Menu styling)
-- Designing the World Monitor embed approach (fetch → inject `<base>` → rewrite assets → `srcdoc`)
-- Drafting earlier README versions (the one above I rewrote myself from an outline)
-- In this pass: writing the keyboard-shortcut handler and the small rewrites of todos / focus / clock, at my request
-
-**What I did myself**
-
-- Chose the product direction, features, default dashboard URL, and shortcut list
-- Tested everything in the browser and decided what looked right
-- Rewrote this README and the AI disclosure in my own words
-- Reviewed and modified AI-suggested code before shipping
-
-A large portion of the original code was AI-assisted — I'm not claiming otherwise. Ask me about any part of the code and I can explain how it works.
+I picked the product, features, URL, and shortcuts; tested in browser; reviewed before ship. A large part of the original code was AI-assisted — not claiming otherwise. Full detail: [AI_USAGE_DRAFT.md](AI_USAGE_DRAFT.md). Ask me about any part of the code.
 
 ## Notes
 
