@@ -39,9 +39,9 @@ Then open http://localhost:3000
 
 ## AI Usage
 
-AI (Claude / opencode) scaffolded the first files, helped with CSS and the World Monitor embed, and drafted earlier READMEs. After feedback I rewrote this README and the disclosure myself, then added keyboard shortcuts and rewrote todos / focus / clock (AI drafted those under my direction).
+Most of this codebase is mine — I wrote the structure, features, and UI logic myself. AI (Claude / opencode) was a second pair of hands: early scaffolding help, CSS debugging, the World Monitor embed idea, and this pass (keyboard shortcuts + todos / focus / clock rewrites, plus README polish).
 
-I picked the product, features, URL, and shortcuts; tested in browser; reviewed before ship. A large part of the original code was AI-assisted — not claiming otherwise. Full detail: [AI_USAGE_DRAFT.md](AI_USAGE_DRAFT.md). Ask me about any part of the code.
+I chose the product direction, features, and defaults; tested everything in the browser; reviewed code before it shipped; wrote the final README and disclosure. Full detail: [AI_USAGE_DRAFT.md](AI_USAGE_DRAFT.md). Ask me about any part of the code.
 
 ## Notes
 
