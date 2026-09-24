@@ -1809,6 +1809,26 @@ body.ui-hidden .show-ui {
   margin-bottom: 8px;
 }
 
+.shortcuts-hint {
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.shortcuts-hint kbd {
+  font-family: "Oxanium", monospace;
+  font-size: 11px;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 5px;
+  border: 1px solid rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(var(--text-body-r), var(--text-body-g), var(--text-body-b), 0.9);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
 .todo-form {
   display: flex;
   gap: 8px;

@@ -385,6 +385,7 @@ function renderManage() {
 function renderTodos() {
   const list = $("todoList");
   list.innerHTML = "";
+
   if (!state.todos.length) {
     const empty = document.createElement("li");
     empty.className = "todo-empty";
@@ -392,28 +393,36 @@ function renderTodos() {
     list.appendChild(empty);
     return;
   }
+
   state.todos.forEach((todo, index) => {
     const li = document.createElement("li");
     if (todo.done) li.classList.add("done");
-    const check = document.createElement("input");
-    check.type = "checkbox";
-    check.checked = todo.done;
-    check.addEventListener("change", () => {
-      state.todos[index].done = check.checked;
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = todo.done;
+    checkbox.onchange = () => {
+      state.todos[index].done = checkbox.checked;
       saveState();
       renderTodos();
-    });
-    const span = document.createElement("span");
-    span.textContent = todo.text;
+    };
+
+    const text = document.createElement("span");
+    text.textContent = todo.text;
+
     const del = document.createElement("button");
     del.type = "button";
     del.textContent = "×";
-    del.addEventListener("click", () => {
+    del.title = "Delete task";
+    del.onclick = () => {
       state.todos.splice(index, 1);
       saveState();
       renderTodos();
-    });
-    li.append(check, span, del);
+    };
+
+    li.appendChild(checkbox);
+    li.appendChild(text);
+    li.appendChild(del);
     list.appendChild(li);
   });
 }
@@ -426,8 +435,16 @@ function highlightSub(text) {
     .join("");
 }
 
+function getGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning.";
+  if (hour < 18) return "Good afternoon.";
+  return "Good evening.";
+}
+
 function tick() {
   const now = new Date();
+  const greet = getGreeting();
   const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   const date = now.toLocaleDateString([], {
     weekday: "long",
@@ -435,18 +452,15 @@ function tick() {
     day: "numeric",
     year: "numeric"
   });
-  const h = now.getHours();
-  let greet = "Good evening.";
-  if (h < 12) greet = "Good morning.";
-  else if (h < 18) greet = "Good afternoon.";
-
   const sub = "How can i assist you today ?";
+
   $("greetLine").textContent = greet;
   $("greetLine2").textContent = greet;
   $("greetSub").innerHTML = highlightSub(sub);
   $("greetSub2").innerHTML = highlightSub(sub);
   $("statClock").textContent = time;
   $("statDate").textContent = date;
+
   $("dashLink").href = state.dashUrl;
   $("dashLink2").href = state.dashUrl;
   $("dashFallbackLink").href = state.dashUrl;
@@ -634,9 +648,9 @@ let focusLeft = 25 * 60;
 let focusTimer = null;
 
 function renderFocus() {
-  const m = String(Math.floor(focusLeft / 60)).padStart(2, "0");
-  const s = String(focusLeft % 60).padStart(2, "0");
-  $("focusTime").textContent = `${m}:${s}`;
+  const m = Math.floor(focusLeft / 60);
+  const s = focusLeft % 60;
+  $("focusTime").textContent = (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
   $("focusStart").textContent = focusTimer ? "Pause" : "Start";
 }
 
@@ -652,10 +666,15 @@ function startFocus() {
     return;
   }
   focusTimer = setInterval(() => {
-    focusLeft -= 1;
+    focusLeft--;
     if (focusLeft <= 0) {
-      focusLeft = focusMode === "work" ? 5 * 60 : 25 * 60;
-      focusMode = focusMode === "work" ? "break" : "work";
+      if (focusMode === "work") {
+        focusMode = "break";
+        focusLeft = 5 * 60;
+      } else {
+        focusMode = "work";
+        focusLeft = 25 * 60;
+      }
       stopFocus();
       return;
     }
@@ -878,16 +897,47 @@ function bind() {
     });
   });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "/" && document.activeElement !== $("searchInput")) {
+  document.addEventListener("keydown", handleKeys);
+}
+
+function handleKeys(e) {
+  const el = document.activeElement;
+  const typing =
+    el &&
+    (el.tagName === "INPUT" ||
+      el.tagName === "TEXTAREA" ||
+      el.tagName === "SELECT" ||
+      el.isContentEditable);
+
+  if (e.key === "Escape") {
+    closeMenus();
+    if (!$("mapLayer").hidden) closeMap();
+    if (typing) el.blur();
+    return;
+  }
+
+  if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
+
+  if (e.key === "/") {
+    e.preventDefault();
+    $("searchInput").focus();
+    return;
+  }
+
+  if (e.key === "t" || e.key === "T") {
+    e.preventDefault();
+    openMenu("themes");
+    return;
+  }
+
+  const n = Number(e.key);
+  if (n >= 1 && n <= 9) {
+    const item = state.shortcuts[n - 1];
+    if (item) {
       e.preventDefault();
-      $("searchInput").focus();
+      window.open(item.url, "_blank");
     }
-    if (e.key === "Escape") {
-      closeMenus();
-      if (!$("mapLayer").hidden) closeMap();
-    }
-  });
+  }
 }
 
 function start() {
