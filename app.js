@@ -512,7 +512,7 @@ async function loadWeather() {
     $("weatherMeta").textContent = `${desc} · ${Math.round(cur.relative_humidity_2m)}% RH · ${Math.round(cur.wind_speed_10m)} km/h`;
   } catch {
     $("weatherTemp").textContent = "--°";
-    $("weatherMeta").textContent = "Weather unavailable";
+    $("weatherMeta").textContent = "No weather right now";
   }
 }
 
@@ -704,7 +704,7 @@ function bind() {
   $("micBtn").addEventListener("click", () => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SR) {
-      alert("Voice search is not supported in this browser.");
+      alert("Voice search doesn't work in this browser.");
       return;
     }
     const rec = new SR();
