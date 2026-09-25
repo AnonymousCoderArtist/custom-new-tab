@@ -13,8 +13,8 @@
 - Early scaffolding help and CSS layout debugging
 - The World Monitor embed approach
 - Earlier README drafts
-- Keyboard shortcuts + todos / focus / clock rewrites (at my request)
+- Keyboard shortcuts and the todos / focus / clock rewrites (at my request)
 
 ## Honest note for judges
 
-Most of the code is mine. AI assisted on specific pieces listed above — not claiming it wrote the project. I can explain any part of the code.
+Most of the code is mine. AI assisted on the pieces listed above. I can explain any part of the code.
